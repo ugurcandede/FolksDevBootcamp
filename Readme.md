@@ -8,7 +8,7 @@ Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
 Blog projesi oluşturma ve GitHub'a yükleme.
 
-## Ödev 2
+## [Ödev 2](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/761b611194f62bf00269ca399be43f1ec9c36a9b)
 
 Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 
