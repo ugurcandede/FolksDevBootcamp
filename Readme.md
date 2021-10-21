@@ -29,7 +29,7 @@ Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın. 
 Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak ekleyin.
 
-> resource'a veritabanı dump halinde eklendi.
+> resource'a veritabanı dump olarak eklendi.
 
 [![](./img/odev3-diagram.png "Odev 3 DB Diagram")](https://github.com/ugurcandede/)
 
