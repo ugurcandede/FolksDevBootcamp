@@ -24,7 +24,7 @@ Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 ```
 
 
-## [Ödev 3](https://github.com/Folksdev-camp/folksdev-ugurcandede/)
+## [Ödev 3](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/adbf59c670c8a2c897cb7cb2887bae8df5d0cdd0)
 
 Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın. 
 Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak ekleyin.
