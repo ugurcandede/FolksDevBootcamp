@@ -23,6 +23,135 @@ Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 }
 ```
 
+
+## [Ödev 3](https://github.com/Folksdev-camp/folksdev-ugurcandede/)
+
+Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın. 
+Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak ekleyin.
+
+> resource'a veritabanı dump halinde eklendi.
+
+[![](./img/odev3-diagram.png "Odev 3 DB Diagram")](https://github.com/ugurcandede/)
+
+<details>
+<summary>SQL Tablo Oluşturma Kodları </summary>
+
+"User" Tablosu Oluşturma
+
+```sql
+    create table if not exists "user"
+    (
+        id           varchar not null,
+        email        varchar,
+        display_name varchar,
+        constraint user_pk
+        primary key (id)
+    );
+```
+--- 
+
+"Posts" Tablosu Oluşturma
+
+```sql
+    create table if not exists posts
+    (
+        id           varchar,
+        author_id    varchar,
+        post_title   varchar,
+        post_content varchar,
+        post_date    date,
+        constraint posts_user_id_fk
+        foreign key (author_id) references "user"
+    );
+```
+
+--- 
+
+"Comments" Tablosu Oluşturma
+
+```sql
+    create table if not exists comments
+    (
+        id        varchar not null,
+        post_id   varchar,
+        author_id varchar,
+        content   varchar,
+        constraint comments_pk
+        primary key (id),
+        constraint comments_user_id_fk
+        foreign key (author_id) references "user",
+        constraint comments_posts_id_fk
+        foreign key (post_id) references posts (id)
+    );
+```
+
+---
+
+`INSERT` Komutları
+
+```sql
+INSERT INTO public."user" (id, email, display_name)
+VALUES ('1', 'ugur@dede.com', 'Ugurcan Dede'),
+       ('2', 'cagri@folksdev.com', 'Cagri Dursun');
+```
+
+```sql
+INSERT INTO public.posts (id, author_id, post_title, post_content, post_date)
+VALUES ('2', '2', 'Hello', 'Hello Folksie!~', '2021-10-21');
+```
+
+```sql
+INSERT INTO public.comments (id, post_id, author_id, content)
+VALUES ('1', '2', '1', 'Hi Kod Gemisi');
+```
+
+</details>
+
+<details>
+<summary>SQL Sorguları</summary>
+
+```sql
+SELECT u.display_name AS "User", c.content AS "Comment"
+FROM "user" AS u
+         INNER JOIN comments AS c ON c.author_id = u.id
+```
+
+|     User     |    Comment    |
+| :----------: | :-----------: |
+| Ugurcan Dede | Hi Kod Gemisi |
+
+---
+
+```sql
+SELECT u.display_name AS "User",
+       p.post_title   AS "Post Title",
+       p.post_content AS "Post Content",
+       p.post_date    AS "Post Date"
+FROM "user" AS u
+         INNER JOIN posts AS p ON p.author_id = u.id;
+```
+
+|     User     | Post Title |  Post Content   | Post Date  |
+| :----------: | :--------: | :-------------: | :--------: |
+| Cagri Dursun |   Hello    | Hello Folksie!~ | 2021-10-21 |
+
+---
+
+```sql
+SELECT u.display_name AS "User", p.post_title AS "Post Title", c.content as "Comment"
+FROM "user" AS u
+         LEFT JOIN comments c ON u.id = c.author_id
+         INNER JOIN posts p ON c.post_id = p.id
+```
+
+|     User     | Post Title |    Comment    |
+| :----------: | :--------: | :-----------: |
+| Ugurcan Dede |   Hello    | Hi Kod Gemisi |
+
+
+</details>
+
+
 ## Lisans
 
 Bu repo [Ugurcan Dede](https://github.com/ugurcandede) tarafından bootcamp sürecinde oluşturulmuştur. `WTFPL` lisansına
