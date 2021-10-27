@@ -4,7 +4,7 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## [Ödev 4](https://github.com/Folksdev-camp/folksdev-ugurcandede/)
+## [Ödev 4](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fa8bee2d48a4ddfa08bfd7a10572f1960c25e55d)
 
 Blog projesine ait `Entry`, `Comment` ve `User` modelleri oluşturup aralarındaki ilişkiyi kurun.
 
