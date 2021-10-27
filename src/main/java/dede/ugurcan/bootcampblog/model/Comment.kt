@@ -22,9 +22,9 @@ data class Comment @JvmOverloads constructor(
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     val author: User,
 
-//    @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
-    @ManyToMany(mappedBy = "comments", fetch = FetchType.LAZY)
-    val post: List<Post>,
+    @ManyToOne()
+    @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
+    val post: Post,
 
     ) {
     override fun equals(other: Any?): Boolean {
@@ -39,7 +39,7 @@ data class Comment @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id )"
+        return this::class.simpleName + "(id = $id , content = $content , date = $date , status = $status , author = $author , post = $post )"
     }
 }
 

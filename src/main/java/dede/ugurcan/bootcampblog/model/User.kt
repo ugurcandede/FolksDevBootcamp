@@ -33,6 +33,6 @@ data class User @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id )"
+        return this::class.simpleName + "(id = $id , username = $username , email = $email , displayName = $displayName , isActive = $isActive )"
     }
 }

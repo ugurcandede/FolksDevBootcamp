@@ -20,13 +20,7 @@ data class Post @JvmOverloads constructor(
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     val user: User,
 
-//    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "posts_comments",
-        joinColumns = [JoinColumn(name = "post_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "comment_id", referencedColumnName = "id")]
-    )
+    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
     val comments: List<Comment>,
 
     ) {
@@ -42,6 +36,7 @@ data class Post @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id )"
+        return this::class.simpleName + "(id = $id , title = $title , body = $body , createDate = $createDate , user = $user )"
     }
 }
+
