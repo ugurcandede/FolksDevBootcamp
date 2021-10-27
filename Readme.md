@@ -4,29 +4,15 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## Ödev 1
+## [Ödev 4](https://github.com/Folksdev-camp/folksdev-ugurcandede/)
 
-Blog projesi oluşturma ve GitHub'a yükleme.
+Blog projesine ait `Entry`, `Comment` ve `User` modelleri oluşturup aralarındaki ilişkiyi kurun.
 
-## [Ödev 2](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/761b611194f62bf00269ca399be43f1ec9c36a9b)
-
-Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
-
-+ `POST` Metod İsteği
-
-```json
-{
-  "name": "Blade",
-  "year": 1998,
-  "imdbScore": 7.1,
-  "genre": ["action", "horror"]
-}
-```
-
+[![](./img/odev-4.png "Odev 4 DB İlişki Diagramı")](https://github.com/ugurcandede/)
 
 ## [Ödev 3](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/adbf59c670c8a2c897cb7cb2887bae8df5d0cdd0)
 
-Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın. 
+Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın.
 Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak ekleyin.
 
 > resource'a veritabanı dump olarak eklendi.
@@ -151,6 +137,24 @@ FROM "user" AS u
 
 </details>
 
+## [Ödev 2](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/761b611194f62bf00269ca399be43f1ec9c36a9b)
+
+Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
+
++ `POST` Metod İsteği
+
+```json
+{
+  "name": "Blade",
+  "year": 1998,
+  "imdbScore": 7.1,
+  "genre": ["action", "horror"]
+}
+```
+
+## [Ödev 1](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/d862b9106133b364bf86ba610215381b7dbac322)
+
+Blog projesi oluşturma ve GitHub'a yükleme.
 
 ## Lisans
 
