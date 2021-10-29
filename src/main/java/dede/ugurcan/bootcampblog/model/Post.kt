@@ -3,6 +3,7 @@ package dede.ugurcan.bootcampblog.model
 import org.hibernate.Hibernate
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDateTime
+import java.util.*
 import javax.persistence.*
 
 @Entity
@@ -16,14 +17,24 @@ data class Post @JvmOverloads constructor(
     val body: String,
     val createDate: LocalDateTime,
 
-    @ManyToOne()
+    @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     val user: User,
 
-    @OneToMany(mappedBy = "post", cascade = [CascadeType.ALL])
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val comments: List<Comment>,
 
     ) {
+
+    constructor(title: String, body: String, user: User) : this(
+        "",
+        title = title,
+        body = body,
+        createDate = LocalDateTime.now(),
+        user = user,
+        comments = listOf()
+    )
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false

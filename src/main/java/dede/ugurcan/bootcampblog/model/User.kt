@@ -17,10 +17,24 @@ data class User @JvmOverloads constructor(
     val displayName: String,
     val isActive: Boolean = false,
 
-    @OneToMany(mappedBy = "user")
-    val posts: List<Post>
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    val posts: MutableList<Post>,
+
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    val comments: List<Comment>
 
 ) {
+
+    constructor(username: String, email: String, displayName: String) : this(
+        id = "",
+        username = username,
+        email = email,
+        displayName = displayName,
+        isActive = false,
+        posts = mutableListOf(),
+        comments = listOf()
+    )
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
@@ -33,6 +47,6 @@ data class User @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , username = $username , email = $email , displayName = $displayName , isActive = $isActive )"
+        return "username = $username , email = $email , displayName = $displayName , isActive = $isActive "
     }
 }

@@ -4,6 +4,23 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
+## Ödev 5
+
+Blog projesine ait modellere birer repository oluşturarak `CommandLineRunner` sınıfında bu repositoryleri kullanın.
+
+```
+CommentedPost:
+    Post(id = f6c4b575-32f5-4f77-ade2-042332bb85b7, title = Hello, body = Hello Folksie!~, createDate = 2021-10-29T14:37:56.793229,
+            user = username = ugurcandede, email = ugur@dede.com, displayName = Ugurcan Dede, isActive = false)
+```
+
+```
+ID -> 95151a40-8614-4429-a44e-f622b80359b9
+	 Data -> username = ugurcandede , email = ugur@dede.com , displayName = Ugurcan Dede , isActive = false
+ID -> d430371a-f085-4845-9702-60e41e105c73
+	 Data -> username = nemesisce , email = cagridursun@folksdev , displayName = Cagri Dursun , isActive = false
+```
+
 ## [Ödev 4](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fa8bee2d48a4ddfa08bfd7a10572f1960c25e55d)
 
 Blog projesine ait `Entry`, `Comment` ve `User` modelleri oluşturup aralarındaki ilişkiyi kurun.
@@ -12,8 +29,8 @@ Blog projesine ait `Entry`, `Comment` ve `User` modelleri oluşturup aralarında
 
 ## [Ödev 3](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/adbf59c670c8a2c897cb7cb2887bae8df5d0cdd0)
 
-Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın.
-Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak ekleyin.
+Projenize ait bir veritabanı oluşturun, blog ve yorumları çekebileceğiniz bir sorgu yazın. Yazdığınız sorgu kodunu
+projedeki `resource` kısmına SQL dosyası olarak ekleyin.
 
 > resource'a veritabanı dump olarak eklendi.
 
@@ -25,50 +42,51 @@ Yazdığınız sorgu kodunu projedeki `resource` kısmına SQL dosyası olarak e
 "User" Tablosu Oluşturma
 
 ```sql
-    create table if not exists "user"
-    (
-        id           varchar not null,
-        email        varchar,
-        display_name varchar,
-        constraint user_pk
-        primary key (id)
-    );
+create table if not exists "user"
+(
+    id           varchar not null,
+    email        varchar,
+    display_name varchar,
+    constraint user_pk
+    primary key (id)
+);
 ```
---- 
+
+---
 
 "Posts" Tablosu Oluşturma
 
 ```sql
-    create table if not exists posts
-    (
-        id           varchar,
-        author_id    varchar,
-        post_title   varchar,
-        post_content varchar,
-        post_date    date,
-        constraint posts_user_id_fk
-        foreign key (author_id) references "user"
-    );
+create table if not exists posts
+(
+    id           varchar,
+    author_id    varchar,
+    post_title   varchar,
+    post_content varchar,
+    post_date    date,
+    constraint posts_user_id_fk
+    foreign key (author_id) references "user"
+);
 ```
 
---- 
+---
 
 "Comments" Tablosu Oluşturma
 
 ```sql
-    create table if not exists comments
-    (
-        id        varchar not null,
-        post_id   varchar,
-        author_id varchar,
-        content   varchar,
-        constraint comments_pk
-        primary key (id),
-        constraint comments_user_id_fk
-        foreign key (author_id) references "user",
-        constraint comments_posts_id_fk
-        foreign key (post_id) references posts (id)
-    );
+create table if not exists comments
+(
+    id        varchar not null,
+    post_id   varchar,
+    author_id varchar,
+    content   varchar,
+    constraint comments_pk
+    primary key (id),
+    constraint comments_user_id_fk
+    foreign key (author_id) references "user",
+    constraint comments_posts_id_fk
+    foreign key (post_id) references posts (id)
+);
 ```
 
 ---
@@ -134,14 +152,13 @@ FROM "user" AS u
 | :----------: | :--------: | :-----------: |
 | Ugurcan Dede |   Hello    | Hi Kod Gemisi |
 
-
 </details>
 
 ## [Ödev 2](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/761b611194f62bf00269ca399be43f1ec9c36a9b)
 
 Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 
-+ `POST` Metod İsteği
+- POST` Metod İsteği
 
 ```json
 {

@@ -18,11 +18,11 @@ data class Comment @JvmOverloads constructor(
     @field:Enumerated(EnumType.STRING)
     val status: StatusType,
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
     val author: User,
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "post_id", referencedColumnName = "id", nullable = false)
     val post: Post,
 
