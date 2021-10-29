@@ -4,7 +4,7 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## Ödev 5
+## [Ödev 5](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/99c9f829cd6d939b417f027c6e3492ac47d87b5b)
 
 Blog projesine ait modellere birer repository oluşturarak `CommandLineRunner` sınıfında bu repositoryleri kullanın.
 

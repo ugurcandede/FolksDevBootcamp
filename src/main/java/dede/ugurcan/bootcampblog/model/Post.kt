@@ -3,7 +3,6 @@ package dede.ugurcan.bootcampblog.model
 import org.hibernate.Hibernate
 import org.hibernate.annotations.GenericGenerator
 import java.time.LocalDateTime
-import java.util.*
 import javax.persistence.*
 
 @Entity

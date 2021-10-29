@@ -13,21 +13,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @SpringBootApplication
 public class BootcampBlogApplication implements CommandLineRunner {
 
 
-    public static void main(String[] args) {
-        SpringApplication.run(BootcampBlogApplication.class, args);
-    }
-
     private final UserRepository userRepository;
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
-
     public BootcampBlogApplication(UserRepository userRepository,
                                    PostRepository postRepository,
                                    CommentRepository commentRepository
@@ -37,6 +31,9 @@ public class BootcampBlogApplication implements CommandLineRunner {
         this.commentRepository = commentRepository;
     }
 
+    public static void main(String[] args) {
+        SpringApplication.run(BootcampBlogApplication.class, args);
+    }
 
     @Override
     public void run(String... args) throws Exception {
