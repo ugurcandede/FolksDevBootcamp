@@ -4,13 +4,13 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## Ödev 7 
+## [Ödev 7](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fe699c9f8a9cd9ecfbef3df79d5a11cbeb3ab084)
 
 Blog projenize ait servislerin `unit test`lerini oluşturun. **Code coverage 100%** yapın.
 
 [![](./img/service-coverage.PNG "Odev 7 Code Coverage")](https://github.com/ugurcandede/)
 
-## Ödev 6 
+## [Ödev 6](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fe699c9f8a9cd9ecfbef3df79d5a11cbeb3ab084)
 
 Blog projenizin servislerini oluşturun (CRUD), contoller ile çalışmasını sağlayın.
 Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak veri girişi yapmasını sağlayın.
