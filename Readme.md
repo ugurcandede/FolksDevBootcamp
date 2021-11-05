@@ -4,6 +4,150 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
+## Ödev 7 
+
+Blog projenize ait servislerin `unit test`lerini oluşturun. **Code coverage 100%** yapın.
+
+[![](./img/service-coverage.PNG "Odev 7 Code Coverage")](https://github.com/ugurcandede/)
+
+## Ödev 6 
+
+Blog projenizin servislerini oluşturun (CRUD), contoller ile çalışmasını sağlayın.
+Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak veri girişi yapmasını sağlayın.
+
+<details>
+<summary>CRUD Sorgu Açıklamaları</summary>
+
+- **UserController**
+
+| Metod | Adres | Açıklama | 
+|:----:|:----:|:----:|
+| GET | localhost:8080/v1/user | Bütün kullanıcıları listeler |
+| GET | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı getirir |
+| POST | localhost:8080/v1/user | Kullanıcı oluşturur |
+
+- **PostController**
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| GET | localhost:8080/v1/post | Bütün gönderileri listeler |
+| GET | localhost:8080/v1/post/0 | ID 0 olan gönderiyi getirir |
+| POST | localhost:8080/v1/post/0 | ID 0 olan kullanıcıya ait gönderi oluşturur |
+
+- **CommentController**
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| GET | localhost:8080/v1/comment | Bütün yorumları listeler |
+| GET | localhost:8080/v1/comment/0 | ID 0 olan yorumu getirir |
+| POST | localhost:8080/v1/comment | Yorum oluşturur |
+
+
+
+</details>
+
+<details>
+<summary>PostController CRUD Sorguları</summary>
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| POST | localhost:8080/v1/post | Gönderi oluşturur |
+
+```json
+{
+    "title": "Post Title",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a diam consectetur.",
+    "status": "DRAFT"
+}
+```
+---
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| GET | localhost:8080/v1/post | Bütün gönderileri listeler |
+
+```json
+[
+  {
+    "id": "9e68a3e6-c531-4321-962f-0d333b5142ca",
+    "title": "Hello",
+    "body": "Hello Folksie!~",
+    "creationDate": "2021-11-05T17:42:50.383426",
+    "status": "PUBLISHED",
+    "user": {
+      "id": "7d5ddf73-0a64-43b0-b62b-2cd3dab5f2be",
+      "username": "ugurcandede",
+      "email": "ugur@dede.com",
+      "displayName": "Ugurcan Dede"
+    },
+    "comments": []
+  },
+  {
+    "id": "001250ab-b76b-4f89-9dad-2d1e64719a17",
+    "title": "Lorem Ipsum",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a diam consectetur.",
+    "creationDate": "2021-11-05T17:42:50.542691",
+    "status": "PUBLISHED",
+    "user": {
+      "id": "3403a2c4-241f-4a2b-8386-62c360d22ffe",
+      "username": "nemesisce",
+      "email": "cagridursun@folksdev",
+      "displayName": "Cagri Dursun"
+    },
+    "comments": [
+      {
+        "id": "1fa4ddee-9453-47df-ad0e-bc78e9d71dae",
+        "body": "Hi Kod Gemisi",
+        "creationDate": "2021-11-05T17:42:50.542691"
+      }
+    ]
+  }
+]
+```
+
+---
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| GET | localhost:8080/v1/post/9e68a3e6-c531-4321-962f-0d333b5142ca | ID 9e68a3e6-c531-4321-962f-0d333b5142ca olan gönderiyi getirir |
+
+```json
+{
+  "id": "9e68a3e6-c531-4321-962f-0d333b5142ca",
+  "title": "Hello",
+  "body": "Hello Folksie!~",
+  "creationDate": "2021-11-05T17:42:50.383426",
+  "status": "PUBLISHED",
+  "user": {
+    "id": "7d5ddf73-0a64-43b0-b62b-2cd3dab5f2be",
+    "username": "ugurcandede",
+    "email": "ugur@dede.com",
+    "displayName": "Ugurcan Dede"
+  },
+  "comments": []
+}
+```
+
+</details>
+
+### Flyway
+```bash
+  INFO 11164 --- [  restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.7.3 by Redgate
+  INFO 11164 --- [  restartedMain] o.f.c.i.database.base.DatabaseType       : Database: jdbc:postgresql://localhost:5432/blog (PostgreSQL 14.0)
+  WARN 11164 --- [  restartedMain] o.f.c.internal.database.base.Database    : Flyway upgrade recommended: Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@7131dad0 14.0 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@7131dad0 is 13.
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbValidate     : Successfully validated 5 migrations (execution time 00:00.021s)
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 1
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1.1 - create user"
+  INFO 11164 --- [  restartedMain] o.f.c.i.s.DefaultSqlScriptExecutor       : 0 rows affected
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1.2 - create post"
+  INFO 11164 --- [  restartedMain] o.f.c.i.s.DefaultSqlScriptExecutor       : 0 rows affected
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1.3 - create comment"
+  INFO 11164 --- [  restartedMain] o.f.c.i.s.DefaultSqlScriptExecutor       : 0 rows affected
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Migrating schema "public" to version "1.4 - insert user"
+  INFO 11164 --- [  restartedMain] o.f.c.i.s.DefaultSqlScriptExecutor       : 1 rows affected
+  INFO 11164 --- [  restartedMain] o.f.core.internal.command.DbMigrate      : Successfully applied 4 migrations to schema "public", now at version v1.4 (execution time 00:00.154s)
+```
+
 ## [Ödev 5](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/99c9f829cd6d939b417f027c6e3492ac47d87b5b)
 
 Blog projesine ait modellere birer repository oluşturarak `CommandLineRunner` sınıfında bu repositoryleri kullanın.

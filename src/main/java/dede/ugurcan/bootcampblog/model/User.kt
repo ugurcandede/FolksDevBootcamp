@@ -18,22 +18,12 @@ data class User @JvmOverloads constructor(
     val isActive: Boolean = false,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    val posts: MutableList<Post>,
+    val posts: Collection<Post>,
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     val comments: List<Comment>
 
 ) {
-
-    constructor(username: String, email: String, displayName: String) : this(
-        id = "",
-        username = username,
-        email = email,
-        displayName = displayName,
-        isActive = false,
-        posts = mutableListOf(),
-        comments = listOf()
-    )
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -45,8 +35,7 @@ data class User @JvmOverloads constructor(
 
     override fun hashCode(): Int = javaClass.hashCode()
 
-    @Override
     override fun toString(): String {
-        return "username = $username , email = $email , displayName = $displayName , isActive = $isActive "
+        return "User(username='$username', email='$email', displayName='$displayName', isActive=$isActive)"
     }
 }

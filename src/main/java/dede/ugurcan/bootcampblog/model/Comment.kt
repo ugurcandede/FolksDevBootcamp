@@ -12,11 +12,8 @@ data class Comment @JvmOverloads constructor(
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     val id: String? = "",
-    val content: String,
-    val date: LocalDateTime,
-
-    @field:Enumerated(EnumType.STRING)
-    val status: StatusType,
+    val body: String,
+    val creationDate: LocalDateTime = LocalDateTime.now(),
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -39,10 +36,6 @@ data class Comment @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , content = $content , date = $date , status = $status , author = $author , post = $post )"
+        return this::class.simpleName + "(id = $id , content = $body , date = $body , status = $creationDate , post = $post )"
     }
-}
-
-enum class StatusType {
-    PUBLISHED, DRAFT, DELETED
 }

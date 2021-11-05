@@ -14,7 +14,10 @@ data class Post @JvmOverloads constructor(
     val id: String? = "",
     val title: String,
     val body: String,
-    val createDate: LocalDateTime,
+    val creationDate: LocalDateTime = LocalDateTime.now(),
+
+    @field:Enumerated(EnumType.STRING)
+    val status: PostStatus,
 
     @ManyToOne(cascade = [CascadeType.ALL])
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -25,13 +28,14 @@ data class Post @JvmOverloads constructor(
 
     ) {
 
-    constructor(title: String, body: String, user: User) : this(
+    constructor(title: String, body: String, status: PostStatus, user: User) : this(
         "",
         title = title,
         body = body,
-        createDate = LocalDateTime.now(),
+        creationDate = LocalDateTime.now(),
         user = user,
-        comments = listOf()
+        comments = listOf(),
+        status = status
     )
 
     override fun equals(other: Any?): Boolean {
@@ -46,7 +50,10 @@ data class Post @JvmOverloads constructor(
 
     @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , title = $title , body = $body , createDate = $createDate , user = $user )"
+        return this::class.simpleName + "(id = $id , title = $title , body = $body , creationDate = $creationDate )"
     }
 }
 
+enum class PostStatus {
+    PUBLISHED, DRAFT
+}

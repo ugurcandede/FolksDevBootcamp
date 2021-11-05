@@ -1,4 +1,4 @@
-package dede.ugurcan.bootcampblog.dto
+package dede.ugurcan.bootcampblog.dto.request
 
 import javax.validation.constraints.*
 
