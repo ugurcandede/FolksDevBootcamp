@@ -3,6 +3,7 @@ package dede.ugurcan.bootcampblog.service;
 import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.dto.converter.CommentDtoConverter;
 import dede.ugurcan.bootcampblog.dto.request.CreateCommentRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdateCommentRequest;
 import dede.ugurcan.bootcampblog.exception.NotFoundException;
 import dede.ugurcan.bootcampblog.model.Comment;
 import dede.ugurcan.bootcampblog.model.Post;
@@ -10,6 +11,7 @@ import dede.ugurcan.bootcampblog.model.User;
 import dede.ugurcan.bootcampblog.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -50,6 +52,7 @@ public class CommentService {
     }
 
     public CommentDto createComment(CreateCommentRequest request) {
+
         User user = userService.findByUserId(request.getUserId());
         Post post = postService.findByPostId(request.getPostId());
 
@@ -59,4 +62,27 @@ public class CommentService {
     }
 
 
+    public String deleteComment(String commentId) {
+
+        getCommentById(commentId);
+        commentRepository.deleteById(commentId);
+
+        return commentId + " deleted";
+    }
+
+    public CommentDto updateComment(String commentId, UpdateCommentRequest request) {
+
+        Comment comment = findByCommentId(commentId);
+
+        Comment updatedComment = new Comment(
+                comment.getId(),
+                request.getBody(),
+                comment.getCreatedAt(),
+                LocalDateTime.now(),
+                comment.getAuthor(),
+                comment.getPost()
+        );
+
+        return commentDtoConverter.convertToCommentDto(commentRepository.save(updatedComment));
+    }
 }

@@ -25,7 +25,8 @@ public class PostDtoConverter {
                 from.getId(),
                 from.getTitle(),
                 from.getBody(),
-                from.getCreationDate(),
+                from.getCreatedAt(),
+                from.getUpdatedAt(),
                 from.getStatus(),
                 postUserDtoConverter.convert(from.getUser()),
                 from.getComments()

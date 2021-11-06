@@ -14,7 +14,12 @@ data class Post @JvmOverloads constructor(
     val id: String? = "",
     val title: String,
     val body: String,
-    val creationDate: LocalDateTime = LocalDateTime.now(),
+
+    @Column(name = "created_at")
+    val createdAt:LocalDateTime = LocalDateTime.now(),
+
+    @Column(name = "updated_at")
+    val updatedAt:LocalDateTime = LocalDateTime.now(),
 
     @field:Enumerated(EnumType.STRING)
     val status: PostStatus,
@@ -32,7 +37,7 @@ data class Post @JvmOverloads constructor(
         "",
         title = title,
         body = body,
-        creationDate = LocalDateTime.now(),
+        createdAt = LocalDateTime.now(),
         user = user,
         comments = listOf(),
         status = status
@@ -48,9 +53,8 @@ data class Post @JvmOverloads constructor(
 
     override fun hashCode(): Int = javaClass.hashCode()
 
-    @Override
     override fun toString(): String {
-        return this::class.simpleName + "(id = $id , title = $title , body = $body , creationDate = $creationDate )"
+        return "Post(title='$title', body='$body', createdAt=$createdAt, updatedAt=$updatedAt, status=$status)"
     }
 }
 

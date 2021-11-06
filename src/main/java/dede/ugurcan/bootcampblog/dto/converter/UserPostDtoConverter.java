@@ -4,6 +4,8 @@ import dede.ugurcan.bootcampblog.dto.UserPostDto;
 import dede.ugurcan.bootcampblog.model.Post;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class UserPostDtoConverter {
 
@@ -12,7 +14,8 @@ public class UserPostDtoConverter {
                 from.getId(),
                 from.getTitle(),
                 from.getBody(),
-                from.getCreationDate(),
+                from.getCreatedAt(),
+                from.getUpdatedAt(),
                 from.getStatus()
         );
     }

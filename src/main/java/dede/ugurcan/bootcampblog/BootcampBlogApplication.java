@@ -56,7 +56,7 @@ public class BootcampBlogApplication implements CommandLineRunner {
 //        user1.getPosts().add(post);
         postRepository.save(post);
 
-        Post commentedPost = postRepository.findTopByOrderByCreationDate();
+        Post commentedPost = postRepository.findTopByOrderByCreatedAt();
         System.out.println("\nCommentedPost: " + commentedPost);
 
 

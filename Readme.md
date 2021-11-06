@@ -25,6 +25,9 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
 | GET | localhost:8080/v1/user | Bütün kullanıcıları listeler |
 | GET | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı getirir |
 | POST | localhost:8080/v1/user | Kullanıcı oluşturur |
+| PUT | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı günceller |
+| DELETE | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı siler |
+---
 
 - **PostController**
 
@@ -33,6 +36,9 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
 | GET | localhost:8080/v1/post | Bütün gönderileri listeler |
 | GET | localhost:8080/v1/post/0 | ID 0 olan gönderiyi getirir |
 | POST | localhost:8080/v1/post/0 | ID 0 olan kullanıcıya ait gönderi oluşturur |
+| PUT | localhost:8080/v1/post/0 | ID 0 olan gönderiyi günceller |
+| DELETE | localhost:8080/v1/post/0 | ID 0 olan gönderiyi siler |
+---
 
 - **CommentController**
 
@@ -41,9 +47,8 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
 | GET | localhost:8080/v1/comment | Bütün yorumları listeler |
 | GET | localhost:8080/v1/comment/0 | ID 0 olan yorumu getirir |
 | POST | localhost:8080/v1/comment | Yorum oluşturur |
-
-
-
+| PUT | localhost:8080/v1/comment/0 | ID 0 olan yorumu günceller |
+| DELETE | localhost:8080/v1/comment/0 | ID 0 olan yorumu siler |
 </details>
 
 <details>
@@ -126,6 +131,39 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
   },
   "comments": []
 }
+```
+
+---
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| PUT | localhost:8080/v1/post/88147f8c-791b-43ff-ad05-bfb4c1786aff | ID 88147f8c-791b-43ff-ad05-bfb4c1786aff olan gönderiyi günceller |
+
+```json
+{
+  "id": "ba49d411-df37-4fb3-9de8-1ede14d74f37",
+  "title": "Updated title",
+  "body": "Updated body",
+  "createdAt": "2021-11-06T01:42:00.100413",
+  "updatedAt": "2021-11-06T04:12:37.9239274",
+  "status": "PUBLISHED",
+  "user": {
+    "id": "c4db6180-cd30-4253-ba53-b3d73547a4c8",
+    "username": "ugurcandede",
+    "email": "ugur@dede.com",
+    "displayName": "Ugurcan Dede"
+  },
+  "comments": []
+}
+```
+
+---
+
+| Metod | Adres | Açıklama |
+|:----:|:----:|:----:|
+| DELETE | localhost:8080/v1/post/88147f8c-791b-43ff-ad05-bfb4c1786aff | ID 88147f8c-791b-43ff-ad05-bfb4c1786aff olan gönderiyi siler |
+```text
+ba49d411-df37-4fb3-9de8-1ede14d74f37 deleted
 ```
 
 </details>
@@ -212,7 +250,6 @@ create table if not exists posts
     foreign key (author_id) references "user"
 );
 ```
-
 ---
 
 "Comments" Tablosu Oluşturma

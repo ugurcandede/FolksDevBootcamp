@@ -2,6 +2,7 @@ package dede.ugurcan.bootcampblog.model
 
 import org.hibernate.Hibernate
 import org.hibernate.annotations.GenericGenerator
+import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
@@ -17,11 +18,17 @@ data class User @JvmOverloads constructor(
     val displayName: String,
     val isActive: Boolean = false,
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val posts: Collection<Post>,
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    val comments: List<Comment>
+    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
+    val comments: List<Comment>,
+
+    @Column(name = "created_at")
+    val createdAt:LocalDateTime = LocalDateTime.now(),
+
+    @Column(name = "updated_at")
+    val updatedAt:LocalDateTime = LocalDateTime.now(),
 
 ) {
 
@@ -36,6 +43,6 @@ data class User @JvmOverloads constructor(
     override fun hashCode(): Int = javaClass.hashCode()
 
     override fun toString(): String {
-        return "User(username='$username', email='$email', displayName='$displayName', isActive=$isActive)"
+        return "User(username='$username', email='$email', displayName='$displayName', isActive=$isActive, createdAt=$createdAt, updatedAt=$updatedAt)"
     }
 }

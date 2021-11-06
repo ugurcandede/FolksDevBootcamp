@@ -5,5 +5,6 @@ import java.time.LocalDateTime
 data class PostCommentDto(
     val id: String,
     val body: String,
-    val creationDate: LocalDateTime,
+    val createdAt: LocalDateTime,
+    val updatedAt:LocalDateTime
 )

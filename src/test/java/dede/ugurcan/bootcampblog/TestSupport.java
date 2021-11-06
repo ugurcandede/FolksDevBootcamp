@@ -1,9 +1,7 @@
 package dede.ugurcan.bootcampblog;
 
 import dede.ugurcan.bootcampblog.dto.*;
-import dede.ugurcan.bootcampblog.dto.request.CreateCommentRequest;
-import dede.ugurcan.bootcampblog.dto.request.CreatePostRequest;
-import dede.ugurcan.bootcampblog.dto.request.CreateUserRequest;
+import dede.ugurcan.bootcampblog.dto.request.*;
 import dede.ugurcan.bootcampblog.model.Comment;
 import dede.ugurcan.bootcampblog.model.Post;
 import dede.ugurcan.bootcampblog.model.PostStatus;
@@ -15,6 +13,7 @@ import java.util.List;
 
 public class TestSupport {
 
+    // User Test Support
     public User generateUser() {
         return new User(
                 "id",
@@ -55,7 +54,25 @@ public class TestSupport {
         );
     }
 
-    // PostTestSupport
+    public UpdateUserRequest generateUpdateUserRequest() {
+        return new UpdateUserRequest("displayName");
+    }
+
+    public User generateUpdatedUser(User from, UpdateUserRequest request) {
+        return new User(
+                from.getId(),
+                from.getUsername(),
+                from.getEmail(),
+                request.getDisplayName(),
+                from.isActive(),
+                from.getPosts(),
+                from.getComments(),
+                from.getCreatedAt(),
+                from.getUpdatedAt()
+        );
+    }
+
+    // Post Test Support
     public Post generatePost() {
         User user = generateUser();
         return new Post(
@@ -65,7 +82,8 @@ public class TestSupport {
                 user
         );
     }
-    public Post generatePostWithFields(String title,String body) {
+
+    public Post generatePostWithFields(String title, String body) {
         User user = generateUser();
         return new Post(
                 title,
@@ -81,6 +99,7 @@ public class TestSupport {
                 "Id",
                 "Test Post",
                 "Test Body",
+                LocalDateTime.of(2020, 11, 5, 0, 0),
                 LocalDateTime.of(2020, 11, 5, 0, 0),
                 PostStatus.PUBLISHED,
                 user,
@@ -113,7 +132,28 @@ public class TestSupport {
         );
     }
 
-    // CommentTestSupport
+    public UpdatePostRequest generateUpdatePostRequest() {
+        return new UpdatePostRequest(
+                "title",
+                "body",
+                PostStatus.PUBLISHED);
+    }
+
+    public Post generateUpdatedPost(Post from, UpdatePostRequest request) {
+        return new Post(
+                from.getId(),
+                request.getTitle(),
+                request.getBody(),
+                from.getCreatedAt(),
+                from.getUpdatedAt(),
+                request.getStatus(),
+                from.getUser(),
+                from.getComments()
+        );
+
+    }
+
+    // Comment Test Support
     public Comment generateComment() {
         User user = generateUser();
         Post post = generatePost();
@@ -128,6 +168,7 @@ public class TestSupport {
         return new CommentDto(
                 "Id",
                 "Test Body",
+                LocalDateTime.of(2020, 11, 5, 0, 0),
                 LocalDateTime.of(2020, 11, 5, 0, 0),
                 commentUserDto
         );
@@ -159,4 +200,18 @@ public class TestSupport {
         );
     }
 
+    public UpdateCommentRequest generateUpdateCommentRequest() {
+        return new UpdateCommentRequest("body");
+    }
+
+    public Comment generateUpdatedComment(Comment from, UpdateCommentRequest request) {
+        return new Comment(
+                from.getId(),
+                request.getBody(),
+                from.getCreatedAt(),
+                from.getUpdatedAt(),
+                from.getAuthor(),
+                from.getPost()
+        );
+    }
 }

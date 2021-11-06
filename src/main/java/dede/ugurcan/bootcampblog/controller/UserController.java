@@ -1,7 +1,10 @@
 package dede.ugurcan.bootcampblog.controller;
 
+import dede.ugurcan.bootcampblog.dto.PostDto;
 import dede.ugurcan.bootcampblog.dto.UserDto;
 import dede.ugurcan.bootcampblog.dto.request.CreateUserRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdatePostRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdateUserRequest;
 import dede.ugurcan.bootcampblog.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +35,17 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserDto> createUser(@Valid @RequestBody CreateUserRequest request){
         return ResponseEntity.ok(userService.createUser(request));
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable String userId) {
+        return ResponseEntity.ok(userService.deleteUser(userId));
+    }
+
+    @PutMapping("/{userId}")
+    public ResponseEntity<UserDto> updateUser(@PathVariable String userId,
+                                              @Valid @RequestBody UpdateUserRequest request) {
+        return ResponseEntity.ok(userService.updateUser(userId, request));
     }
 
 

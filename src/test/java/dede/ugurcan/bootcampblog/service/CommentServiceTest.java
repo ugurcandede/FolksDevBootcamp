@@ -4,6 +4,7 @@ import dede.ugurcan.bootcampblog.TestSupport;
 import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.dto.converter.CommentDtoConverter;
 import dede.ugurcan.bootcampblog.dto.request.CreateCommentRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdateCommentRequest;
 import dede.ugurcan.bootcampblog.exception.NotFoundException;
 import dede.ugurcan.bootcampblog.model.Comment;
 import dede.ugurcan.bootcampblog.repository.CommentRepository;
@@ -99,6 +100,67 @@ class CommentServiceTest extends TestSupport {
         Mockito.verify(postService).findByPostId("PostId");
         Mockito.verify(commentDtoConverter).convertToCommentDto(comment);
         Mockito.verify(commentRepository).save(comment);
+    }
+
+    @Test
+    void testDeleteComment_whenCalledValidId_itShouldReturnString() {
+
+        Comment comment = generateComment();
+        CommentDto commentDto = generateCommentDto();
+
+        Mockito.when(commentRepository.findById("id")).thenReturn(Optional.of(comment));
+        Mockito.when(commentDtoConverter.convertToCommentDto(comment)).thenReturn(commentDto);
+
+        String result = commentService.deleteComment("id");
+
+        assertEquals("id deleted", result);
+
+        Mockito.verify(commentRepository).findById("id");
+        Mockito.verify(commentDtoConverter).convertToCommentDto(comment);
+    }
+
+    @Test
+    void testDeleteComment_whenCalledInValidId_itShouldThrowNotFoundException() {
+
+        Mockito.when(commentRepository.findById("id")).thenThrow(NotFoundException.class);
+
+        assertThrows(NotFoundException.class, () -> commentService.getCommentById("id"));
+
+        Mockito.verify(commentRepository).findById("id");
+        Mockito.verifyNoInteractions(commentDtoConverter);
+    }
+
+    @Test
+    void testUpdateComment_whenCalledValidRequest_itShouldReturnCommentDto() {
+
+        UpdateCommentRequest request = generateUpdateCommentRequest();
+        Comment updatedComment = generateUpdatedComment(generateComment(), request);
+        CommentDto commentDto = generateCommentDto();
+
+        Mockito.when(commentRepository.findById("id")).thenReturn(Optional.of(generateComment()));
+        Mockito.when(commentRepository.save(updatedComment)).thenReturn(updatedComment);
+        Mockito.when(commentDtoConverter.convertToCommentDto(updatedComment)).thenReturn(commentDto);
+
+        CommentDto result = commentService.updateComment("id", request);
+
+        assertEquals(commentDto, result);
+
+        Mockito.verify(commentRepository).findById("id");
+        Mockito.verify(commentRepository).save(updatedComment);
+        Mockito.verify(commentDtoConverter).convertToCommentDto(updatedComment);
+    }
+
+    @Test
+    void testUpdateComment_whenCalledIdInValid_itShouldThrowNotFoundException() {
+
+        UpdateCommentRequest request = generateUpdateCommentRequest();
+
+        Mockito.when(commentRepository.findById("id")).thenThrow(NotFoundException.class);
+
+        assertThrows(NotFoundException.class, () -> commentService.updateComment("id", request));
+
+        Mockito.verify(commentRepository).findById("id");
+        Mockito.verifyNoInteractions(commentDtoConverter);
     }
 
 }

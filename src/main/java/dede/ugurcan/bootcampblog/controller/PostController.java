@@ -2,6 +2,8 @@ package dede.ugurcan.bootcampblog.controller;
 
 import dede.ugurcan.bootcampblog.dto.PostDto;
 import dede.ugurcan.bootcampblog.dto.request.CreatePostRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdatePostRequest;
+import dede.ugurcan.bootcampblog.model.Post;
 import dede.ugurcan.bootcampblog.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +37,15 @@ public class PostController {
         return ResponseEntity.ok(postService.createPost(userId, request));
     }
 
+    @DeleteMapping("/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable String postId) {
+        return ResponseEntity.ok(postService.deletePost(postId));
+    }
+
+    @PutMapping("/{postId}")
+    public ResponseEntity<PostDto> updatePost(@PathVariable String postId,
+                                           @Valid @RequestBody UpdatePostRequest request) {
+        return ResponseEntity.ok(postService.updatePost(postId, request));
+    }
 
 }

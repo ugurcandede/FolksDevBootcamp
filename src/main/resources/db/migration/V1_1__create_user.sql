@@ -5,5 +5,7 @@ CREATE TABLE IF NOT EXISTS users
     email        VARCHAR(255),
     display_name VARCHAR(255),
     is_active    BOOLEAN,
+    created_at   TIMESTAMP,
+    updated_at   TIMESTAMP,
     CONSTRAINT pk_users PRIMARY KEY (id)
 );

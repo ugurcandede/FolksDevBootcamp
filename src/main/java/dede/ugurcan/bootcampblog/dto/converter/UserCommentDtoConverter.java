@@ -11,7 +11,7 @@ public class UserCommentDtoConverter {
         return new UserCommentDto(
                 from.getId(),
                 from.getBody(),
-                from.getCreationDate()
+                from.getCreatedAt()
         );
     }
 }

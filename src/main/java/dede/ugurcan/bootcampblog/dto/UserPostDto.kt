@@ -7,6 +7,7 @@ data class UserPostDto(
     val id: String,
     val title: String,
     val body: String,
-    val creationDate: LocalDateTime,
+    val createdAt: LocalDateTime,
+    val updatedAt: LocalDateTime,
     val status: PostStatus,
 )

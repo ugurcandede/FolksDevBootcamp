@@ -4,6 +4,7 @@ import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.model.Comment;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,8 @@ public class CommentDtoConverter {
         return new CommentDto(
                 from.getId(),
                 from.getBody(),
-                from.getCreationDate(),
+                from.getCreatedAt(),
+                from.getUpdatedAt(),
                 commentUserDtoConverter.convert(from.getAuthor())
         );
     }

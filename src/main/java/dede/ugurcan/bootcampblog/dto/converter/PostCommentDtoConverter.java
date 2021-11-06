@@ -11,7 +11,8 @@ public class PostCommentDtoConverter {
         return new PostCommentDto(
                 from.getId(),
                 from.getBody(),
-                from.getCreationDate()
+                from.getCreatedAt(),
+                from.getUpdatedAt()
         );
     }
 }

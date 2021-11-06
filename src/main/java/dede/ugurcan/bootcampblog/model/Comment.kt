@@ -13,7 +13,12 @@ data class Comment @JvmOverloads constructor(
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     val id: String? = "",
     val body: String,
-    val creationDate: LocalDateTime = LocalDateTime.now(),
+
+    @Column(name = "created_at")
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+
+    @Column(name = "updated_at")
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "author_id", referencedColumnName = "id", nullable = false)
@@ -34,8 +39,4 @@ data class Comment @JvmOverloads constructor(
 
     override fun hashCode(): Int = javaClass.hashCode()
 
-    @Override
-    override fun toString(): String {
-        return this::class.simpleName + "(id = $id , content = $body , date = $body , status = $creationDate , post = $post )"
-    }
 }

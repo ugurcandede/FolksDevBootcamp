@@ -4,6 +4,7 @@ import dede.ugurcan.bootcampblog.TestSupport;
 import dede.ugurcan.bootcampblog.dto.PostDto;
 import dede.ugurcan.bootcampblog.dto.converter.PostDtoConverter;
 import dede.ugurcan.bootcampblog.dto.request.CreatePostRequest;
+import dede.ugurcan.bootcampblog.dto.request.UpdatePostRequest;
 import dede.ugurcan.bootcampblog.exception.NotFoundException;
 import dede.ugurcan.bootcampblog.model.Post;
 import dede.ugurcan.bootcampblog.repository.PostRepository;
@@ -81,16 +82,16 @@ class PostServiceTest extends TestSupport {
     @Test
     void testCreatePost_whenCalledValidRequest_itShouldReturnPostDto() {
         CreatePostRequest request = generateCreatePostRequest();
-        Post post = generatePostWithFields(request.getTitle(),request.getBody());
+        Post post = generatePostWithFields(request.getTitle(), request.getBody());
         PostDto postDto = generatePostDto();
 
         Mockito.when(userService.findByUserId("id")).thenReturn(generateUser());
         Mockito.when(postDtoConverter.convertToPostDto(post)).thenReturn(postDto);
         Mockito.when(postRepository.save(post)).thenReturn(post);
 
-        PostDto result=postService.createPost("id",request);
+        PostDto result = postService.createPost("id", request);
 
-        assertEquals(postDto,result);
+        assertEquals(postDto, result);
 
         Mockito.verify(userService).findByUserId("id");
         Mockito.verify(postDtoConverter).convertToPostDto(post);
@@ -104,11 +105,72 @@ class PostServiceTest extends TestSupport {
 
         Mockito.when(userService.findByUserId("id")).thenThrow(NotFoundException.class);
 
-        assertThrows(NotFoundException.class,()->postService.createPost("id",request));
+        assertThrows(NotFoundException.class, () -> postService.createPost("id", request));
 
         Mockito.verify(userService).findByUserId("id");
         Mockito.verifyNoInteractions(postDtoConverter);
         Mockito.verifyNoInteractions(postRepository);
+    }
+
+    @Test
+    void testDeletePost_whenCalledValidId_itShouldReturnString() {
+
+        Post post = generatePost();
+        PostDto postDto = generatePostDto();
+
+        Mockito.when(postRepository.findById("id")).thenReturn(Optional.of(post));
+        Mockito.when(postDtoConverter.convertToPostDto(post)).thenReturn(postDto);
+
+        String result = postService.deletePost("id");
+
+        assertEquals("id deleted", result);
+
+        Mockito.verify(postRepository).findById("id");
+        Mockito.verify(postDtoConverter).convertToPostDto(post);
+    }
+
+    @Test
+    void testDeletePost_whenCalledInValidId_itShouldThrowNotFoundException() {
+
+        Mockito.when(postRepository.findById("id")).thenThrow(NotFoundException.class);
+
+        assertThrows(NotFoundException.class, () -> postService.getPostById("id"));
+
+        Mockito.verify(postRepository).findById("id");
+        Mockito.verifyNoInteractions(postDtoConverter);
+    }
+
+    @Test
+    void testUpdatePost_whenCalledValidRequest_itShouldReturnPostDto() {
+
+        UpdatePostRequest request = generateUpdatePostRequest();
+        Post updatedPost = generateUpdatedPost(generatePost(), request);
+        PostDto postDto = generatePostDto();
+
+        Mockito.when(postRepository.findById("id")).thenReturn(Optional.of(generatePost()));
+        Mockito.when(postRepository.save(updatedPost)).thenReturn(updatedPost);
+        Mockito.when(postDtoConverter.convertToPostDto(updatedPost)).thenReturn(postDto);
+
+        PostDto result = postService.updatePost("id", request);
+
+        assertEquals(postDto, result);
+
+        Mockito.verify(postRepository).findById("id");
+        Mockito.verify(postRepository).save(updatedPost);
+        Mockito.verify(postDtoConverter).convertToPostDto(updatedPost);
+    }
+
+    @Test
+    void testUpdatePost_whenCalledIdInValid_itShouldThrowNotFoundException() {
+
+        UpdatePostRequest request = generateUpdatePostRequest();
+
+        Mockito.when(postRepository.findById("id")).thenThrow(NotFoundException.class);
+
+        assertThrows(NotFoundException.class, () -> postService.updatePost("id", request));
+
+        Mockito.verify(postRepository).findById("id");
+        Mockito.verifyNoInteractions(postDtoConverter);
     }
 
 }
