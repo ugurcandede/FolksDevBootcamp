@@ -1,10 +1,8 @@
 package dede.ugurcan.bootcampblog.controller;
 
 import dede.ugurcan.bootcampblog.dto.CommentDto;
-import dede.ugurcan.bootcampblog.dto.PostDto;
 import dede.ugurcan.bootcampblog.dto.request.CreateCommentRequest;
 import dede.ugurcan.bootcampblog.dto.request.UpdateCommentRequest;
-import dede.ugurcan.bootcampblog.dto.request.UpdatePostRequest;
 import dede.ugurcan.bootcampblog.service.CommentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +42,7 @@ public class CommentController {
 
     @PutMapping("/{commentId}")
     public ResponseEntity<CommentDto> updateComment(@PathVariable String commentId,
-                                              @Valid @RequestBody UpdateCommentRequest request) {
+                                                    @Valid @RequestBody UpdateCommentRequest request) {
         return ResponseEntity.ok(commentService.updateComment(commentId, request));
     }
 }

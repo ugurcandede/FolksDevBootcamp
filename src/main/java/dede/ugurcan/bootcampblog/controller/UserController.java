@@ -1,9 +1,7 @@
 package dede.ugurcan.bootcampblog.controller;
 
-import dede.ugurcan.bootcampblog.dto.PostDto;
 import dede.ugurcan.bootcampblog.dto.UserDto;
 import dede.ugurcan.bootcampblog.dto.request.CreateUserRequest;
-import dede.ugurcan.bootcampblog.dto.request.UpdatePostRequest;
 import dede.ugurcan.bootcampblog.dto.request.UpdateUserRequest;
 import dede.ugurcan.bootcampblog.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +31,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody CreateUserRequest request){
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody CreateUserRequest request) {
         return ResponseEntity.ok(userService.createUser(request));
     }
 

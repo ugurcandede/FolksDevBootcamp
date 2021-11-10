@@ -6,6 +6,7 @@ import javax.persistence.Enumerated
 import javax.validation.constraints.NotBlank
 
 data class UpdatePostRequest(
+
     @field:NotBlank
     val title: String,
 

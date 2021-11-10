@@ -1,16 +1,15 @@
 package dede.ugurcan.bootcampblog.dto.request
 
-import javax.validation.constraints.Email
-import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotBlank
 
 data class CreateUserRequest(
 
-    @field:NotEmpty
+    @field:NotBlank
     val username: String,
 
-    @field:Email
+    @field:NotBlank
     val email: String,
 
-    @field:NotEmpty
+    @field:NotBlank
     val displayName: String
 )

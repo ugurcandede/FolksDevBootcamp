@@ -4,8 +4,6 @@ import dede.ugurcan.bootcampblog.dto.UserPostDto;
 import dede.ugurcan.bootcampblog.model.Post;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-
 @Component
 public class UserPostDtoConverter {
 

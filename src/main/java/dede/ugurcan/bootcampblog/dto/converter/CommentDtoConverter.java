@@ -4,7 +4,6 @@ import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.model.Comment;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 

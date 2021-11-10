@@ -4,7 +4,7 @@ import javax.validation.constraints.*
 
 data class CreateMovieRequest(
 
-    @field:NotEmpty
+    @field:NotBlank
     val name: String,
 
     @field:NotNull

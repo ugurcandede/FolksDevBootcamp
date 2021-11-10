@@ -1,15 +1,15 @@
 package dede.ugurcan.bootcampblog.dto.request
 
-import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotBlank
 
 data class CreateCommentRequest(
 
-    @field:NotEmpty
+    @field:NotBlank
     val userId: String,
 
-    @field:NotEmpty
+    @field:NotBlank
     val postId: String,
 
-    @field:NotEmpty
+    @field:NotBlank
     val body: String,
 )

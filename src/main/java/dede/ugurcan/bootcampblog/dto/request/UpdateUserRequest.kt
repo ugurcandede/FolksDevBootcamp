@@ -1,9 +1,9 @@
 package dede.ugurcan.bootcampblog.dto.request
 
-import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotBlank
 
 data class UpdateUserRequest(
 
-    @field:NotEmpty
+    @field:NotBlank
     val displayName: String
 )
