@@ -1,7 +1,15 @@
 package dede.ugurcan.bootcampblog;
 
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.time.Clock;
 
 
 @SpringBootApplication
@@ -11,4 +19,25 @@ public class BootcampBlogApplication {
         SpringApplication.run(BootcampBlogApplication.class, args);
     }
 
+    @Bean
+    public Clock clock() {
+        return Clock.systemUTC();
+    }
+
+    @Bean
+    public OpenAPI customAPI(
+            @Value("FolksDev Blog API") String title,
+            @Value("1.0") String version,
+            @Value("FolksDev SpringBoot Bootcamp süresince geliştirilen Spring Boot blog Projesi") String description
+    ) {
+        return new OpenAPI().info(new Info()
+                .title(title)
+                .version(version)
+                .description(description)
+                .contact(new Contact()
+                        .name("Ugurcan Dede")
+                        .url("https://github.com/ugurcandede/FolksDevBootcamp")
+                        .email("ugurcan.dede@outlook.com.tr"))
+                .license(new License().name("GNU GPLv3").url("https://choosealicense.com/licenses/gpl-3.0/")));
+    }
 }

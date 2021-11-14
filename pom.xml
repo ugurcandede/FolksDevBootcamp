@@ -95,6 +95,13 @@
             <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
 
+        <!-- OPEN API/SWAGGER -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

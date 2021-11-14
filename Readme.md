@@ -363,5 +363,5 @@ Blog projesi oluşturma ve GitHub'a yükleme.
 
 ## Lisans
 
-Bu repo [Ugurcan Dede](https://github.com/ugurcandede) tarafından bootcamp sürecinde oluşturulmuştur. `WTFPL` lisansına
+Bu repo [Ugurcan Dede](https://github.com/ugurcandede) tarafından bootcamp sürecinde oluşturulmuştur. [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) lisansına
 sahiptir.
