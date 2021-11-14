@@ -1,7 +1,9 @@
 package dede.ugurcan.bootcampblog.dto.converter;
 
 import dede.ugurcan.bootcampblog.dto.CommentDto;
+import dede.ugurcan.bootcampblog.dto.UserDto;
 import dede.ugurcan.bootcampblog.model.Comment;
+import dede.ugurcan.bootcampblog.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,26 +12,28 @@ import java.util.stream.Collectors;
 @Component
 public class CommentDtoConverter {
 
-    private final CommentUserDtoConverter commentUserDtoConverter;
-
-    public CommentDtoConverter(CommentUserDtoConverter commentUserDtoConverter) {
-        this.commentUserDtoConverter = commentUserDtoConverter;
-    }
-
-    public CommentDto convertToCommentDto(Comment from) {
+    public CommentDto convert(Comment from) {
         return new CommentDto(
                 from.getId(),
                 from.getBody(),
                 from.getCreatedAt(),
                 from.getUpdatedAt(),
-                commentUserDtoConverter.convert(from.getAuthor())
+                convertToUserDto(from.getAuthor())
         );
     }
 
-    public List<CommentDto> convertToCommentDtoList(List<Comment> from) {
-        return from
+    private UserDto convertToUserDto(User from) {
+        return new UserDto(from.getId(),
+                from.getUsername(),
+                from.getEmail(),
+                from.getDisplayName(),
+                from.isActive());
+    }
+
+    public List<CommentDto> convertToCommentDtoList(List<Comment> comments) {
+        return comments
                 .stream()
-                .map(this::convertToCommentDto)
+                .map(this::convert)
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,8 @@
 package dede.ugurcan.bootcampblog;
 
-import dede.ugurcan.bootcampblog.dto.*;
+import dede.ugurcan.bootcampblog.dto.CommentDto;
+import dede.ugurcan.bootcampblog.dto.PostDto;
+import dede.ugurcan.bootcampblog.dto.UserDto;
 import dede.ugurcan.bootcampblog.dto.request.*;
 import dede.ugurcan.bootcampblog.model.Comment;
 import dede.ugurcan.bootcampblog.model.Post;
@@ -11,13 +13,14 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
+
 public class TestSupport {
 
     // User Test Support
     public User generateUser() {
         return new User(
-                "id",
-                "email",
+                "username",
+                "test@email.com",
                 "displayName",
                 Collections.emptyList(),
                 Collections.emptyList()
@@ -49,7 +52,7 @@ public class TestSupport {
     public CreateUserRequest generateCreateUserRequest() {
         return new CreateUserRequest(
                 "username",
-                "email",
+                "test@email.com",
                 "displayName"
         );
     }
@@ -94,7 +97,7 @@ public class TestSupport {
     }
 
     public PostDto generatePostDto() {
-        PostUserDto user = generatePostUserDto();
+        UserDto user = generateUserDto();
         return new PostDto(
                 "Id",
                 "Test Post",
@@ -104,15 +107,6 @@ public class TestSupport {
                 PostStatus.PUBLISHED,
                 user,
                 Collections.emptyList()
-        );
-    }
-
-    public PostUserDto generatePostUserDto() {
-        return new PostUserDto(
-                "Id",
-                "Username",
-                "email",
-                "DisplayName"
         );
     }
 
@@ -164,21 +158,13 @@ public class TestSupport {
     }
 
     public CommentDto generateCommentDto() {
-        CommentUserDto commentUserDto = generateCommentUserDto();
+        UserDto userDto = generateUserDto();
         return new CommentDto(
                 "Id",
                 "Test Body",
                 LocalDateTime.of(2020, 11, 5, 0, 0),
                 LocalDateTime.of(2020, 11, 5, 0, 0),
-                commentUserDto
-        );
-    }
-
-    public CommentUserDto generateCommentUserDto() {
-        return new CommentUserDto(
-                "Id",
-                "Test Username",
-                "Test User"
+                userDto
         );
     }
 

@@ -36,24 +36,24 @@ class PostServiceTest extends TestSupport {
     }
 
     @Test
-    void testGetPostById_whenCalledWithId_itShouldReturnPostDto() {
+    void testGetPostById_whenCalledWithExistId_itShouldReturnPostDto() {
         Post post = generatePost();
         PostDto postDto = generatePostDto();
 
         Mockito.when(postRepository.findById("id")).thenReturn(Optional.of(post));
-        Mockito.when(postDtoConverter.convertToPostDto(post)).thenReturn(postDto);
+        Mockito.when(postDtoConverter.convert(post)).thenReturn(postDto);
 
         PostDto result = postService.getPostById("id");
 
         assertEquals(postDto, result);
 
         Mockito.verify(postRepository).findById("id");
-        Mockito.verify(postDtoConverter).convertToPostDto(post);
+        Mockito.verify(postDtoConverter).convert(post);
 
     }
 
     @Test
-    void testGetPostById_whenIdNotExists_itShouldThrowNotFoundException() {
+    void testGetPostById_whenCalledIdNotExists_itShouldThrowNotFoundException() {
 
         Mockito.when(postRepository.findById("id")).thenThrow(NotFoundException.class);
 
@@ -64,7 +64,7 @@ class PostServiceTest extends TestSupport {
     }
 
     @Test
-    void testGetPostList_tShouldReturnListOfPostDto() {
+    void testGetPostList_itShouldReturnListOfPostDto() {
         List<Post> postList = generatePostList();
         List<PostDto> postDtoList = generatePostDtoList();
 
@@ -80,13 +80,14 @@ class PostServiceTest extends TestSupport {
     }
 
     @Test
-    void testCreatePost_whenCalledValidRequest_itShouldReturnPostDto() {
+    void testCreatePost_whenCalledCreatePostRequest_itShouldReturnPostDto() {
+
         CreatePostRequest request = generateCreatePostRequest();
         Post post = generatePostWithFields(request.getTitle(), request.getBody());
         PostDto postDto = generatePostDto();
 
         Mockito.when(userService.findByUserId("id")).thenReturn(generateUser());
-        Mockito.when(postDtoConverter.convertToPostDto(post)).thenReturn(postDto);
+        Mockito.when(postDtoConverter.convert(post)).thenReturn(postDto);
         Mockito.when(postRepository.save(post)).thenReturn(post);
 
         PostDto result = postService.createPost("id", request);
@@ -94,7 +95,7 @@ class PostServiceTest extends TestSupport {
         assertEquals(postDto, result);
 
         Mockito.verify(userService).findByUserId("id");
-        Mockito.verify(postDtoConverter).convertToPostDto(post);
+        Mockito.verify(postDtoConverter).convert(post);
         Mockito.verify(postRepository).save(post);
     }
 
@@ -119,18 +120,18 @@ class PostServiceTest extends TestSupport {
         PostDto postDto = generatePostDto();
 
         Mockito.when(postRepository.findById("id")).thenReturn(Optional.of(post));
-        Mockito.when(postDtoConverter.convertToPostDto(post)).thenReturn(postDto);
+        Mockito.when(postDtoConverter.convert(post)).thenReturn(postDto);
 
         String result = postService.deletePost("id");
 
         assertEquals("id deleted", result);
 
         Mockito.verify(postRepository).findById("id");
-        Mockito.verify(postDtoConverter).convertToPostDto(post);
+        Mockito.verify(postDtoConverter).convert(post);
     }
 
     @Test
-    void testDeletePost_whenCalledInValidId_itShouldThrowNotFoundException() {
+    void testDeletePost_whenCalledInvalidId_itShouldThrowNotFoundException() {
 
         Mockito.when(postRepository.findById("id")).thenThrow(NotFoundException.class);
 
@@ -141,7 +142,7 @@ class PostServiceTest extends TestSupport {
     }
 
     @Test
-    void testUpdatePost_whenCalledValidRequest_itShouldReturnPostDto() {
+    void testUpdatePost_whenCalledUpdatePostRequest_itShouldReturnPostDto() {
 
         UpdatePostRequest request = generateUpdatePostRequest();
         Post updatedPost = generateUpdatedPost(generatePost(), request);
@@ -149,7 +150,7 @@ class PostServiceTest extends TestSupport {
 
         Mockito.when(postRepository.findById("id")).thenReturn(Optional.of(generatePost()));
         Mockito.when(postRepository.save(updatedPost)).thenReturn(updatedPost);
-        Mockito.when(postDtoConverter.convertToPostDto(updatedPost)).thenReturn(postDto);
+        Mockito.when(postDtoConverter.convert(updatedPost)).thenReturn(postDto);
 
         PostDto result = postService.updatePost("id", request);
 
@@ -157,11 +158,11 @@ class PostServiceTest extends TestSupport {
 
         Mockito.verify(postRepository).findById("id");
         Mockito.verify(postRepository).save(updatedPost);
-        Mockito.verify(postDtoConverter).convertToPostDto(updatedPost);
+        Mockito.verify(postDtoConverter).convert(updatedPost);
     }
 
     @Test
-    void testUpdatePost_whenCalledIdInValid_itShouldThrowNotFoundException() {
+    void testUpdatePost_whenCalledUpdatePostRequestButInvalidId_itShouldThrowNotFoundException() {
 
         UpdatePostRequest request = generateUpdatePostRequest();
 

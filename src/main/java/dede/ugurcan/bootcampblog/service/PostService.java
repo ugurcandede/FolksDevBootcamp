@@ -39,7 +39,7 @@ public class PostService {
     }
 
     public PostDto getPostById(String id) {
-        return postDtoConverter.convertToPostDto(findByPostId(id));
+        return postDtoConverter.convert(findByPostId(id));
     }
 
     public List<PostDto> getAllPostDtoList() {
@@ -57,7 +57,7 @@ public class PostService {
                 user
         );
 
-        return postDtoConverter.convertToPostDto(postRepository.save(post));
+        return postDtoConverter.convert(postRepository.save(post));
     }
 
     public String deletePost(String postId) {
@@ -83,6 +83,6 @@ public class PostService {
                 post.getComments()
         );
 
-        return postDtoConverter.convertToPostDto(postRepository.save(updatedPost));
+        return postDtoConverter.convert(postRepository.save(updatedPost));
     }
 }

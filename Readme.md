@@ -4,6 +4,13 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
+## Ödev 8
+
+Blog projenize ait `integration test`leri oluşturun.
+
+[![](./img/controller-coverage.PNG "Odev 7 Code Coverage")](https://github.com/ugurcandede/)
+
+
 ## [Ödev 7](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fe699c9f8a9cd9ecfbef3df79d5a11cbeb3ab084)
 
 Blog projenize ait servislerin `unit test`lerini oluşturun. **Code coverage 100%** yapın.

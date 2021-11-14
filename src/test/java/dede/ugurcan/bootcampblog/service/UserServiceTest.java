@@ -34,25 +34,24 @@ class UserServiceTest extends TestSupport {
     }
 
     @Test
-    void testGetUserById_whenCalledWithId_itShouldReturnUserDto() {
+    void testGetUserById_whenCalledExistId_itShouldReturnUserDto() {
 
         User user = generateUser();
         UserDto userDto = generateUserDto();
 
         Mockito.when(userRepository.findById("id")).thenReturn(Optional.of(user));
-        Mockito.when(userDtoConverter.convertToUserDto(user)).thenReturn(userDto);
+        Mockito.when(userDtoConverter.convert(user)).thenReturn(userDto);
 
         UserDto result = userService.getUserById("id");
 
         assertEquals(userDto, result);
 
         Mockito.verify(userRepository).findById("id");
-        Mockito.verify(userDtoConverter).convertToUserDto(user);
-
+        Mockito.verify(userDtoConverter).convert(user);
     }
 
     @Test
-    void testGetUserById_whenIdNotExist_itShouldThrowNotFoundException() {
+    void testGetUserById_whenCalledIdNotExists_itShouldThrowNotFoundException() {
 
         Mockito.when(userRepository.findById("id")).thenThrow(NotFoundException.class);
 
@@ -60,7 +59,6 @@ class UserServiceTest extends TestSupport {
 
         Mockito.verify(userRepository).findById("id");
         Mockito.verifyNoInteractions(userDtoConverter);
-
     }
 
     @Test
@@ -80,26 +78,24 @@ class UserServiceTest extends TestSupport {
 
         Mockito.verify(userRepository).findAll();
         Mockito.verify(userDtoConverter).convertToUserDtoList(repositoryList);
-
     }
 
     @Test
-    void testCreateUser_whenCalledValidRequest_itShouldReturnUserDto() {
+    void testCreateUser_whenCalledCreateUserRequest_itShouldReturnUserDto() {
 
         CreateUserRequest request = generateCreateUserRequest();
         User user = generateUser();
         UserDto userDto = generateUserDto();
 
-        Mockito.when(userDtoConverter.convertToUserDto(user)).thenReturn(userDto);
+        Mockito.when(userDtoConverter.convert(user)).thenReturn(userDto);
         Mockito.when(userRepository.save(user)).thenReturn(user);
 
         UserDto result = userService.createUser(request);
 
         assertEquals(userDto, result);
 
-        Mockito.verify(userDtoConverter).convertToUserDto(user);
+        Mockito.verify(userDtoConverter).convert(user);
         Mockito.verify(userRepository).save(user);
-
     }
 
     @Test
@@ -109,14 +105,14 @@ class UserServiceTest extends TestSupport {
         UserDto userDto = generateUserDto();
 
         Mockito.when(userRepository.findById("id")).thenReturn(Optional.of(user));
-        Mockito.when(userDtoConverter.convertToUserDto(user)).thenReturn(userDto);
+        Mockito.when(userDtoConverter.convert(user)).thenReturn(userDto);
 
         String result = userService.deleteUser("id");
 
         assertEquals("id deleted", result);
 
         Mockito.verify(userRepository).findById("id");
-        Mockito.verify(userDtoConverter).convertToUserDto(user);
+        Mockito.verify(userDtoConverter).convert(user);
     }
 
     @Test
@@ -139,7 +135,7 @@ class UserServiceTest extends TestSupport {
 
         Mockito.when(userRepository.findById("id")).thenReturn(Optional.of(generateUser()));
         Mockito.when(userRepository.save(updatedUser)).thenReturn(updatedUser);
-        Mockito.when(userDtoConverter.convertToUserDto(updatedUser)).thenReturn(userDto);
+        Mockito.when(userDtoConverter.convert(updatedUser)).thenReturn(userDto);
 
         UserDto result = userService.updateUser("id", request);
 
@@ -147,7 +143,7 @@ class UserServiceTest extends TestSupport {
 
         Mockito.verify(userRepository).findById("id");
         Mockito.verify(userRepository).save(updatedUser);
-        Mockito.verify(userDtoConverter).convertToUserDto(updatedUser);
+        Mockito.verify(userDtoConverter).convert(updatedUser);
     }
 
     @Test

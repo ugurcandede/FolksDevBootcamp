@@ -19,18 +19,18 @@ data class User @JvmOverloads constructor(
     val isActive: Boolean = false,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val posts: Collection<Post>,
+    val posts: List<Post>,
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val comments: List<Comment>,
 
     @Column(name = "created_at")
-    val createdAt:LocalDateTime = LocalDateTime.now(),
+    val createdAt: LocalDateTime = LocalDateTime.now(),
 
     @Column(name = "updated_at")
-    val updatedAt:LocalDateTime = LocalDateTime.now(),
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
 
-) {
+    ) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -14,5 +14,5 @@ data class CreatePostRequest(
     val body: String,
 
     @field:Enumerated(EnumType.STRING)
-    val status: PostStatus,
+    val status: PostStatus = PostStatus.DRAFT,
 )

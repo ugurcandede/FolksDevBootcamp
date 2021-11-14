@@ -1,7 +1,7 @@
 package dede.ugurcan.bootcampblog.controller;
 
-import dede.ugurcan.bootcampblog.dto.request.CreateMovieRequest;
 import dede.ugurcan.bootcampblog.dto.MovieDto;
+import dede.ugurcan.bootcampblog.dto.request.CreateMovieRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

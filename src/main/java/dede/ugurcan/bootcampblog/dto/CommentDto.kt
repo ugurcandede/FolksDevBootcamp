@@ -1,12 +1,15 @@
 package dede.ugurcan.bootcampblog.dto
 
+import com.fasterxml.jackson.annotation.JsonInclude
 import java.time.LocalDateTime
 
-data class CommentDto(
+data class CommentDto @JvmOverloads constructor(
 
-    val id: String,
+    val id: String?,
     val body: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime,
-    val author: CommentUserDto,
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    val author: UserDto? = null,
 )

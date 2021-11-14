@@ -36,7 +36,7 @@ public class UserService {
     }
 
     public UserDto getUserById(String id) {
-        return userDtoConverter.convertToUserDto(findByUserId(id));
+        return userDtoConverter.convert(findByUserId(id));
     }
 
     public List<UserDto> getUserList() {
@@ -53,7 +53,7 @@ public class UserService {
                 Collections.emptyList()
         );
 
-        return userDtoConverter.convertToUserDto(userRepository.save(user));
+        return userDtoConverter.convert(userRepository.save(user));
     }
 
     public String deleteUser(String userId) {
@@ -80,6 +80,6 @@ public class UserService {
                 LocalDateTime.now()
         );
 
-        return userDtoConverter.convertToUserDto(userRepository.save(updatedUser));
+        return userDtoConverter.convert(userRepository.save(updatedUser));
     }
 }

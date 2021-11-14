@@ -44,7 +44,7 @@ public class CommentService {
     }
 
     public CommentDto getCommentById(String id) {
-        return commentDtoConverter.convertToCommentDto(findByCommentId(id));
+        return commentDtoConverter.convert(findByCommentId(id));
     }
 
     public List<CommentDto> getAllCommentDtoList() {
@@ -58,7 +58,7 @@ public class CommentService {
 
         Comment comment = new Comment(request.getBody(), user, post);
 
-        return commentDtoConverter.convertToCommentDto(commentRepository.save(comment));
+        return commentDtoConverter.convert(commentRepository.save(comment));
     }
 
 
@@ -83,6 +83,6 @@ public class CommentService {
                 comment.getPost()
         );
 
-        return commentDtoConverter.convertToCommentDto(commentRepository.save(updatedComment));
+        return commentDtoConverter.convert(commentRepository.save(updatedComment));
     }
 }

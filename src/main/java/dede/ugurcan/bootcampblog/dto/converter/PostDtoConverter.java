@@ -1,7 +1,11 @@
 package dede.ugurcan.bootcampblog.dto.converter;
 
+import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.dto.PostDto;
+import dede.ugurcan.bootcampblog.dto.UserDto;
+import dede.ugurcan.bootcampblog.model.Comment;
 import dede.ugurcan.bootcampblog.model.Post;
+import dede.ugurcan.bootcampblog.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,17 +14,7 @@ import java.util.stream.Collectors;
 @Component
 public class PostDtoConverter {
 
-
-    private final PostUserDtoConverter postUserDtoConverter;
-    private final PostCommentDtoConverter postCommentDtoConverter;
-
-    public PostDtoConverter(PostUserDtoConverter postUserDtoConverter, PostCommentDtoConverter postCommentDtoConverter) {
-        this.postUserDtoConverter = postUserDtoConverter;
-        this.postCommentDtoConverter = postCommentDtoConverter;
-    }
-
-
-    public PostDto convertToPostDto(Post from) {
+    public PostDto convert(Post from) {
         return new PostDto(
                 from.getId(),
                 from.getTitle(),
@@ -28,18 +22,46 @@ public class PostDtoConverter {
                 from.getCreatedAt(),
                 from.getUpdatedAt(),
                 from.getStatus(),
-                postUserDtoConverter.convert(from.getUser()),
-                from.getComments()
-                        .stream()
-                        .map(postCommentDtoConverter::convert)
-                        .collect(Collectors.toList())
+                convertToUserDto(from.getUser()),
+                convertToCommentDtoList(from.getComments())
         );
     }
 
-    public List<PostDto> convertToPostDtoList(List<Post> from) {
-        return from
+    private List<CommentDto> convertToCommentDtoList(List<Comment> comments) {
+        return comments
                 .stream()
-                .map(this::convertToPostDto)
+                .map(c -> new CommentDto(
+                        c.getId(),
+                        c.getBody(),
+                        c.getCreatedAt(),
+                        c.getUpdatedAt()
+                ))
                 .collect(Collectors.toList());
+    }
+
+    public List<PostDto> convertToPostDtoList(List<Post> posts) {
+        return posts
+                .stream()
+                .map(p -> new PostDto(
+                        p.getId(),
+                        p.getTitle(),
+                        p.getBody(),
+                        p.getCreatedAt(),
+                        p.getUpdatedAt(),
+                        p.getStatus(),
+                        convertToUserDto(p.getUser()),
+                        convertToCommentDtoList(p.getComments())
+                ))
+                .collect(Collectors.toList());
+    }
+
+    private UserDto convertToUserDto(User from) {
+        return new UserDto(
+                from.getId(),
+                from.getUsername(),
+                from.getEmail(),
+                from.getDisplayName(),
+                from.isActive()
+        );
     }
 }
