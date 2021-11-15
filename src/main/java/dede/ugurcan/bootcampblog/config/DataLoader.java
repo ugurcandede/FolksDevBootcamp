@@ -46,7 +46,7 @@ public class DataLoader implements CommandLineRunner {
 
         // Reverse Ownership
 //        user1.getPosts().add(post);
-//        postRepository.save(post);
+        postRepository.save(post);
 
         Post commentedPost = postRepository.findTopByOrderByCreatedAt();
         System.out.println("\nCommentedPost: " + commentedPost);
@@ -71,7 +71,7 @@ public class DataLoader implements CommandLineRunner {
                 user2,
                 post2);
 
-//        commentRepository.save(comment);
+        commentRepository.save(comment);
 
         userRepository
                 .findAll()
