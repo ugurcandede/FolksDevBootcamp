@@ -28,7 +28,7 @@ public class BootcampBlogApplication {
     public OpenAPI customAPI(
             @Value("FolksDev Blog API") String title,
             @Value("1.0") String version,
-            @Value("FolksDev SpringBoot Bootcamp süresince geliştirilen Spring Boot blog Projesi") String description
+            @Value("FolksDev SpringBoot Bootcamp süresince geliştirilen blog projesi") String description
     ) {
         return new OpenAPI().info(new Info()
                 .title(title)
