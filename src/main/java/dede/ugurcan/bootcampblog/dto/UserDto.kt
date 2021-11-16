@@ -8,7 +8,9 @@ data class UserDto @JvmOverloads constructor(
     val username: String,
     val email: String,
     val displayName: String,
-    val isActive: Boolean = false,
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    val isActive: Boolean? = null,
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     val posts: List<PostDto>? = ArrayList(),

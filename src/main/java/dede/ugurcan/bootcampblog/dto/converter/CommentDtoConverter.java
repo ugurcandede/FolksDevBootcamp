@@ -3,7 +3,6 @@ package dede.ugurcan.bootcampblog.dto.converter;
 import dede.ugurcan.bootcampblog.dto.CommentDto;
 import dede.ugurcan.bootcampblog.dto.UserDto;
 import dede.ugurcan.bootcampblog.model.Comment;
-import dede.ugurcan.bootcampblog.model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,16 +17,13 @@ public class CommentDtoConverter {
                 from.getBody(),
                 from.getCreatedAt(),
                 from.getUpdatedAt(),
-                convertToUserDto(from.getAuthor())
+                new UserDto(
+                        from.getAuthor().getId(),
+                        from.getAuthor().getUsername(),
+                        from.getAuthor().getEmail(),
+                        from.getAuthor().getDisplayName()
+                )
         );
-    }
-
-    private UserDto convertToUserDto(User from) {
-        return new UserDto(from.getId(),
-                from.getUsername(),
-                from.getEmail(),
-                from.getDisplayName(),
-                from.isActive());
     }
 
     public List<CommentDto> convertToCommentDtoList(List<Comment> comments) {

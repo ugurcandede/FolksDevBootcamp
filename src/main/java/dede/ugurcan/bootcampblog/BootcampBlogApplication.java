@@ -30,6 +30,6 @@ public class BootcampBlogApplication {
                         .name("Ugurcan Dede")
                         .url("https://github.com/ugurcandede/FolksDevBootcamp")
                         .email("ugurcan.dede@outlook.com.tr"))
-                .license(new License().name("GNU GPLv3").url("https://choosealicense.com/licenses/gpl-3.0/")));
+                .license(new License().name("GNU GPLv3").url("https://github.com/ugurcandede/FolksDevBootcamp/blob/master/LICENCE")));
     }
 }
