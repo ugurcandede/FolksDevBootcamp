@@ -4,11 +4,11 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## Bonus
+## [Bonus](https://bit.ly/3oBqER0)
 
 Blog projesine `Open API/Swagger` desteği eklendi.
 
-[![](./img/open-api.PNG "Odev 7 Code Coverage")](https://github.com/ugurcandede/)
+[![](./img/open-api.PNG "OpenAPI-Swagger")](https://github.com/ugurcandede/)
 
 ## [Ödev 8](https://github.com/ugurcandede/FolksDevBootcamp/commit/fdecc5b2aae34b94277e1739c4bc92b77dbecec3)
 
