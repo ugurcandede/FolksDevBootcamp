@@ -4,7 +4,19 @@
 
 Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 
-## [Bonus](https://bit.ly/3oBqER0)
+## Docker
+
+[![](./img/docker.png "Docker")](https://github.com/ugurcandede/)
+
+1. Projeyi cihazınıza kopyalayın: `git clone https://github.com/ugurcandede/FolksDevBootcamp`
+2. Proje ana dizinine gidin: `cd FolksDevBootcamp`
+3. `docker build -t bootcamp-blog .` komutu ile docker image oluşturun
+4. `docker-compose up` ile docker containerları çalıştırın
+>`http://localhost:9091` adresinde API,
+> 
+> `http://localhost:9092` adresinde ise PostgreSQL çalışacaktır
+ 
+## [Open API/Swagger](https://bit.ly/3oBqER0)
 
 Blog projesine `Open API/Swagger` desteği eklendi.
 

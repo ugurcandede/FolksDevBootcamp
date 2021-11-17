@@ -1,0 +1,21 @@
+version: '2.4'
+
+services:
+  blog:
+    container_name: blog-container
+    image: bootcamp-blog
+    ports:
+    - 9091:8080
+    environment:
+      DB_URL: "jdbc:postgresql://db/postgres"
+      DB_USERNAME: "postgres"
+      DB_PASSWORD: "pass"
+
+  db:
+    container_name: postgres-container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 9092:5432
