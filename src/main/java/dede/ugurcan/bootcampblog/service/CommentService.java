@@ -33,16 +33,6 @@ public class CommentService {
         this.postService = postService;
     }
 
-    protected Comment findByCommentId(String id) {
-        return commentRepository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException("Comment not found"));
-    }
-
-    protected List<Comment> getAllCommentList() {
-        return commentRepository.findAll();
-    }
-
     public CommentDto getCommentById(String id) {
         return commentDtoConverter.convert(findByCommentId(id));
     }
@@ -60,7 +50,6 @@ public class CommentService {
 
         return commentDtoConverter.convert(commentRepository.save(comment));
     }
-
 
     public String deleteComment(String commentId) {
 
@@ -84,5 +73,15 @@ public class CommentService {
         );
 
         return commentDtoConverter.convert(commentRepository.save(updatedComment));
+    }
+
+    protected Comment findByCommentId(String id) {
+        return commentRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Comment not found with id: " + id));
+    }
+
+    protected List<Comment> getAllCommentList() {
+        return commentRepository.findAll();
     }
 }

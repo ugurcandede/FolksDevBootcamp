@@ -67,8 +67,7 @@ class PostControllerIT extends IntegrationTestSupport {
                 .andExpect(jsonPath("$.createdAt", notNullValue()))
                 .andExpect(jsonPath("$.updatedAt", notNullValue()))
                 .andExpect(jsonPath("$.status", is(post.getStatus().name())))
-                .andExpect(jsonPath("$.user", notNullValue()))
-                .andExpect(jsonPath("$.comments", is(post.getComments())));
+                .andExpect(jsonPath("$.user", notNullValue()));
 
         Post postFromDb = postRepository.findById(post.getId()).get();
         assertEquals(post, postFromDb);
@@ -119,8 +118,7 @@ class PostControllerIT extends IntegrationTestSupport {
                 .andExpect(jsonPath("$.title", notNullValue()))
                 .andExpect(jsonPath("$.body", notNullValue()))
                 .andExpect(jsonPath("$.status", notNullValue()))
-                .andExpect(jsonPath("$.user", notNullValue()))
-                .andExpect(jsonPath("$.comments", hasSize(0)));
+                .andExpect(jsonPath("$.user", notNullValue()));
 
         List<Post> postFromDb = postRepository.findAll();
         assertEquals(1, postFromDb.size());
@@ -162,8 +160,7 @@ class PostControllerIT extends IntegrationTestSupport {
                 .andExpect(jsonPath("$.title", is(request.getTitle())))
                 .andExpect(jsonPath("$.body", is(request.getBody())))
                 .andExpect(jsonPath("$.status", is(request.getStatus().name())))
-                .andExpect(jsonPath("$.user", notNullValue()))
-                .andExpect(jsonPath("$.comments", is(post.getComments())));
+                .andExpect(jsonPath("$.user", notNullValue()));
 
         Post postFromDb = postRepository.findById(post.getId()).get();
         assertEquals(updatedPost, postFromDb);

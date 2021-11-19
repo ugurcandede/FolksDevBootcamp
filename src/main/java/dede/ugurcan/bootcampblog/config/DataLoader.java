@@ -11,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -34,9 +33,7 @@ public class DataLoader implements CommandLineRunner {
         User user1 = new User(
                 "ugurcandede",
                 "ugur@dede.com",
-                "Ugurcan Dede",
-                Collections.emptyList(),
-                Collections.emptyList());
+                "Ugurcan Dede");
 
         Post post = new Post(
                 "Hello",
@@ -55,9 +52,7 @@ public class DataLoader implements CommandLineRunner {
         User user2 = new User(
                 "nemesisce",
                 "cagridursun@folksdev",
-                "Cagri Dursun",
-                Collections.emptyList(),
-                Collections.emptyList());
+                "Cagri Dursun");
 
         Post post2 = new Post(
                 "Lorem Ipsum",

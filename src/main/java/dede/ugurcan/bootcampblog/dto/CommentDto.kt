@@ -1,6 +1,7 @@
 package dede.ugurcan.bootcampblog.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
+import org.springframework.hateoas.RepresentationModel
 import java.time.LocalDateTime
 
 data class CommentDto @JvmOverloads constructor(
@@ -12,4 +13,4 @@ data class CommentDto @JvmOverloads constructor(
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     val author: UserDto? = null,
-)
+) : RepresentationModel<CommentDto>()

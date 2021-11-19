@@ -21,9 +21,7 @@ public class TestSupport {
         return new User(
                 "username",
                 "test@email.com",
-                "displayName",
-                Collections.emptyList(),
-                Collections.emptyList()
+                "displayName"
         );
     }
 
@@ -33,9 +31,7 @@ public class TestSupport {
                 "username",
                 "email",
                 "displayName",
-                false,
-                Collections.emptyList(),
-                Collections.emptyList()
+                false
         );
     }
 

@@ -19,10 +19,10 @@ data class User @JvmOverloads constructor(
     val isActive: Boolean = false,
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val posts: List<Post>,
+    val posts: List<Post>? = ArrayList(),
 
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
-    val comments: List<Comment>,
+    val comments: List<Comment>? = ArrayList(),
 
     @Column(name = "created_at")
     val createdAt: LocalDateTime = LocalDateTime.now(),

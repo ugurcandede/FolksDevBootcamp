@@ -2,6 +2,7 @@ package dede.ugurcan.bootcampblog.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import dede.ugurcan.bootcampblog.model.PostStatus
+import org.springframework.hateoas.RepresentationModel
 import java.time.LocalDateTime
 
 data class PostDto @JvmOverloads constructor(
@@ -18,4 +19,4 @@ data class PostDto @JvmOverloads constructor(
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     val comments: List<CommentDto>? = null,
-)
+) : RepresentationModel<PostDto>()

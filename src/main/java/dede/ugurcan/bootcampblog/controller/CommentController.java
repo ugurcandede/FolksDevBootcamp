@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/v1/comment")
 public class CommentController {
@@ -20,17 +23,26 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    private static void selfLinkGenerator(CommentDto commentDto) {
+        commentDto.getAuthor().add(linkTo(methodOn(UserController.class).getUserById(commentDto.getAuthor().getId())).withSelfRel());
+        commentDto.add(linkTo(methodOn(CommentController.class).getCommentById(commentDto.getId())).withSelfRel());
+    }
+
     @GetMapping
     public ResponseEntity<List<CommentDto>> getAllComments() {
-        return ResponseEntity.ok(commentService.getAllCommentDtoList());
+        List<CommentDto> commentDtoList = commentService.getAllCommentDtoList();
+        commentDtoList.forEach(CommentController::selfLinkGenerator);
+        return ResponseEntity.ok(commentDtoList);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CommentDto> getCommentById(@PathVariable String id) {
-        return ResponseEntity.ok(commentService.getCommentById(id));
+        CommentDto commentDto = commentService.getCommentById(id);
+        selfLinkGenerator(commentDto);
+        return ResponseEntity.ok(commentDto);
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<CommentDto> createComment(@Valid @RequestBody CreateCommentRequest request) {
         return ResponseEntity.ok(commentService.createComment(request));
     }

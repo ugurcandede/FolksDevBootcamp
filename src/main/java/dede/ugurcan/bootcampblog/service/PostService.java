@@ -28,16 +28,6 @@ public class PostService {
         this.userService = userService;
     }
 
-    protected Post findByPostId(String id) {
-        return postRepository
-                .findById(id)
-                .orElseThrow(() -> new NotFoundException("Post not found"));
-    }
-
-    protected List<Post> getAllPostList() {
-        return postRepository.findAll();
-    }
-
     public PostDto getPostById(String id) {
         return postDtoConverter.convert(findByPostId(id));
     }
@@ -84,5 +74,15 @@ public class PostService {
         );
 
         return postDtoConverter.convert(postRepository.save(updatedPost));
+    }
+
+    protected Post findByPostId(String id) {
+        return postRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Post not found with id: " + id));
+    }
+
+    protected List<Post> getAllPostList() {
+        return postRepository.findAll();
     }
 }

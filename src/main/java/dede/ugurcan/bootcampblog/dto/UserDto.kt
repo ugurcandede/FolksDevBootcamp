@@ -1,6 +1,7 @@
 package dede.ugurcan.bootcampblog.dto
 
 import com.fasterxml.jackson.annotation.JsonInclude
+import org.springframework.hateoas.RepresentationModel
 
 data class UserDto @JvmOverloads constructor(
 
@@ -17,4 +18,4 @@ data class UserDto @JvmOverloads constructor(
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     val comments: List<CommentDto>? = ArrayList()
-)
+) : RepresentationModel<UserDto>()

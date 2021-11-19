@@ -16,6 +16,7 @@
     <properties>
         <java.version>11</java.version>
         <kotlin.version>1.5.31</kotlin.version>
+        <open-api.version>1.5.6</open-api.version>
     </properties>
 
     <dependencies>
@@ -41,13 +42,12 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- DB -->
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
         </dependency>
 
+        <!-- DB -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -99,7 +99,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.6</version>
+            <version>${open-api.version}</version>
         </dependency>
 
     </dependencies>

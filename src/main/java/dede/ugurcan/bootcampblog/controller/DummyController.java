@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@RestController
+/**
+ * Ödev 2 için oluşturulmuş işlevsiz controller sınıfı.
+ */
+
+//@RestController
 @RequestMapping("/v1/movie")
 public class DummyController {
 
@@ -37,6 +41,5 @@ public class DummyController {
         MovieDto dto = new MovieDto(time, request.getName(), request.getYear(), request.getImdbScore(), request.getGenre());
         return ResponseEntity.ok(dto);
     }
-
 
 }
