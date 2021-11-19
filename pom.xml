@@ -17,6 +17,7 @@
         <java.version>11</java.version>
         <kotlin.version>1.5.31</kotlin.version>
         <open-api.version>1.5.6</open-api.version>
+        <maven-compiler.version>3.5.1</maven-compiler.version>
     </properties>
 
     <dependencies>
@@ -159,7 +160,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>${maven-compiler.version}</version>
                 <executions>
                     <execution>
                         <id>default-compile</id>
