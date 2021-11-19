@@ -1,21 +1,17 @@
-[![](./img/logo.png "FolksDev & Kod Gemisi")](https://github.com/ugurcandede/)
+# Proje Commit Geçmişi
 
-# FolksDev & Kod Gemisi SpringBoot Bootcamp
+## [Hateoas (SelfLink)](https://github.com/ugurcandede/FolksDevBootcamp/commit/d9b88a49081dbde07ac6a5bbe6d3d08294eb31f5)
 
-Bootcamp süresince geliştirilen spring boot projesine ait repodur.
+Blog projesine `Hateoas` desteği eklendi.
 
-## Docker
+`GET` istekleri sonucunda, `_links` alanına `self` linki eklenerek, kullanıcıya `self` linki ile erişim sağlanır.
+
+## [Docker](https://github.com/ugurcandede/FolksDevBootcamp/commit/2aed7bbbe8c6ac78383427ce0d83120a7008d816)
+
+Blog projesine `Docker` desteği eklendi.
 
 [![](./img/docker.png "Docker")](https://github.com/ugurcandede/)
 
-1. Projeyi cihazınıza kopyalayın: `git clone https://github.com/ugurcandede/FolksDevBootcamp`
-2. Proje ana dizinine gidin: `cd FolksDevBootcamp`
-3. `docker build -t bootcamp-blog .` komutu ile docker image oluşturun
-4. `docker-compose up` ile docker containerları çalıştırın
->`http://localhost:9091` adresinde API,
-> 
-> `http://localhost:9092` adresinde ise PostgreSQL çalışacaktır
- 
 ## [Open API/Swagger](https://bit.ly/3oBqER0)
 
 Blog projesine `Open API/Swagger` desteği eklendi.
@@ -28,7 +24,6 @@ Blog projenize ait `integration test`leri oluşturun.
 
 [![](./img/controller-coverage.PNG "Odev 7 Code Coverage")](https://github.com/ugurcandede/)
 
-
 ## [Ödev 7](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fe699c9f8a9cd9ecfbef3df79d5a11cbeb3ab084)
 
 Blog projenize ait servislerin `unit test`lerini oluşturun. **Code coverage 100%** yapın.
@@ -37,64 +32,26 @@ Blog projenize ait servislerin `unit test`lerini oluşturun. **Code coverage 100
 
 ## [Ödev 6](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/fe699c9f8a9cd9ecfbef3df79d5a11cbeb3ab084)
 
-Blog projenizin servislerini oluşturun (CRUD), contoller ile çalışmasını sağlayın.
-Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak veri girişi yapmasını sağlayın.
+Blog projenizin servislerini oluşturun (CRUD), contoller ile çalışmasını sağlayın. Bir SQL dosyası oluşturarak, uygulama
+ayağı kalkarken `flyway` kullanarak veri girişi yapmasını sağlayın.
 
-<details>
-<summary>CRUD Sorgu Açıklamaları</summary>
-
-- **UserController**
-
-| Metod | Adres | Açıklama | 
-|:----:|:----:|:----:|
-| GET | localhost:8080/v1/user | Bütün kullanıcıları listeler |
-| GET | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı getirir |
-| POST | localhost:8080/v1/user | Kullanıcı oluşturur |
-| PUT | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı günceller |
-| DELETE | localhost:8080/v1/user/0 | ID 0 olan kullanıcıyı siler |
----
-
-- **PostController**
-
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| GET | localhost:8080/v1/post | Bütün gönderileri listeler |
-| GET | localhost:8080/v1/post/0 | ID 0 olan gönderiyi getirir |
-| POST | localhost:8080/v1/post/0 | ID 0 olan kullanıcıya ait gönderi oluşturur |
-| PUT | localhost:8080/v1/post/0 | ID 0 olan gönderiyi günceller |
-| DELETE | localhost:8080/v1/post/0 | ID 0 olan gönderiyi siler |
----
-
-- **CommentController**
-
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| GET | localhost:8080/v1/comment | Bütün yorumları listeler |
-| GET | localhost:8080/v1/comment/0 | ID 0 olan yorumu getirir |
-| POST | localhost:8080/v1/comment | Yorum oluşturur |
-| PUT | localhost:8080/v1/comment/0 | ID 0 olan yorumu günceller |
-| DELETE | localhost:8080/v1/comment/0 | ID 0 olan yorumu siler |
-</details>
-
-<details>
-<summary>PostController CRUD Sorguları</summary>
-
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| POST | localhost:8080/v1/post | Gönderi oluşturur |
+| Metot |         Adres          |     Açıklama      |
+| :---: | :--------------------: | :---------------: |
+| POST  | localhost:8080/v1/post | Gönderi oluşturur |
 
 ```json
 {
-    "title": "Post Title",
-    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a diam consectetur.",
-    "status": "DRAFT"
+  "title": "Post Title",
+  "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a diam consectetur.",
+  "status": "DRAFT"
 }
 ```
+
 ---
 
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| GET | localhost:8080/v1/post | Bütün gönderileri listeler |
+| Metot |         Adres          |          Açıklama          |
+| :---: | :--------------------: | :------------------------: |
+|  GET  | localhost:8080/v1/post | Bütün gönderileri listeler |
 
 ```json
 [
@@ -109,8 +66,7 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
       "username": "ugurcandede",
       "email": "ugur@dede.com",
       "displayName": "Ugurcan Dede"
-    },
-    "comments": []
+    }
   },
   {
     "id": "001250ab-b76b-4f89-9dad-2d1e64719a17",
@@ -137,9 +93,9 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
 
 ---
 
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| GET | localhost:8080/v1/post/9e68a3e6-c531-4321-962f-0d333b5142ca | ID 9e68a3e6-c531-4321-962f-0d333b5142ca olan gönderiyi getirir |
+| Metot |                            Adres                            |                            Açıklama                            |
+| :---: | :---------------------------------------------------------: | :------------------------------------------------------------: |
+|  GET  | localhost:8080/v1/post/9e68a3e6-c531-4321-962f-0d333b5142ca | ID 9e68a3e6-c531-4321-962f-0d333b5142ca olan gönderiyi getirir |
 
 ```json
 {
@@ -153,16 +109,15 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
     "username": "ugurcandede",
     "email": "ugur@dede.com",
     "displayName": "Ugurcan Dede"
-  },
-  "comments": []
+  }
 }
 ```
 
 ---
 
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
-| PUT | localhost:8080/v1/post/88147f8c-791b-43ff-ad05-bfb4c1786aff | ID 88147f8c-791b-43ff-ad05-bfb4c1786aff olan gönderiyi günceller |
+| Metot |                            Adres                            |                             Açıklama                             |
+| :---: | :---------------------------------------------------------: | :--------------------------------------------------------------: |
+|  PUT  | localhost:8080/v1/post/88147f8c-791b-43ff-ad05-bfb4c1786aff | ID 88147f8c-791b-43ff-ad05-bfb4c1786aff olan gönderiyi günceller |
 
 ```json
 {
@@ -177,23 +132,22 @@ Bir SQL dosyası oluşturarak, uygulama ayağı kalkarken `flyway` kullanarak ve
     "username": "ugurcandede",
     "email": "ugur@dede.com",
     "displayName": "Ugurcan Dede"
-  },
-  "comments": []
+  }
 }
 ```
 
 ---
 
-| Metod | Adres | Açıklama |
-|:----:|:----:|:----:|
+| Metot  |                            Adres                            |                           Açıklama                           |
+| :----: | :---------------------------------------------------------: | :----------------------------------------------------------: |
 | DELETE | localhost:8080/v1/post/88147f8c-791b-43ff-ad05-bfb4c1786aff | ID 88147f8c-791b-43ff-ad05-bfb4c1786aff olan gönderiyi siler |
+
 ```text
 ba49d411-df37-4fb3-9de8-1ede14d74f37 deleted
 ```
 
-</details>
-
 ### Flyway
+
 ```bash
   INFO 11164 --- [  restartedMain] o.f.c.internal.license.VersionPrinter    : Flyway Community Edition 7.7.3 by Redgate
   INFO 11164 --- [  restartedMain] o.f.c.i.database.base.DatabaseType       : Database: jdbc:postgresql://localhost:5432/blog (PostgreSQL 14.0)
@@ -241,8 +195,6 @@ projedeki `resource` kısmına SQL dosyası olarak ekleyin.
 
 > resource'a veritabanı dump olarak eklendi.
 
-[![](./img/odev3-diagram.png "Odev 3 DB Diagram")](https://github.com/ugurcandede/)
-
 <details>
 <summary>SQL Tablo Oluşturma Kodları </summary>
 
@@ -255,7 +207,7 @@ create table if not exists "user"
     email        varchar,
     display_name varchar,
     constraint user_pk
-    primary key (id)
+        primary key (id)
 );
 ```
 
@@ -272,9 +224,10 @@ create table if not exists posts
     post_content varchar,
     post_date    date,
     constraint posts_user_id_fk
-    foreign key (author_id) references "user"
+        foreign key (author_id) references "user"
 );
 ```
+
 ---
 
 "Comments" Tablosu Oluşturma
@@ -287,11 +240,11 @@ create table if not exists comments
     author_id varchar,
     content   varchar,
     constraint comments_pk
-    primary key (id),
+        primary key (id),
     constraint comments_user_id_fk
-    foreign key (author_id) references "user",
+        foreign key (author_id) references "user",
     constraint comments_posts_id_fk
-    foreign key (post_id) references posts (id)
+        foreign key (post_id) references posts (id)
 );
 ```
 
@@ -360,11 +313,13 @@ FROM "user" AS u
 
 </details>
 
+[![](./img/odev3-diagram.png "Odev 3 DB Diagram")](https://github.com/ugurcandede/)
+
 ## [Ödev 2](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/761b611194f62bf00269ca399be43f1ec9c36a9b)
 
 Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 
-- POST` Metod İsteği
+- POST` Metot İsteği
 
 ```json
 {
@@ -378,8 +333,3 @@ Projeye dummy `CRUD` api oluşturup, validasyonları hazırlama.
 ## [Ödev 1](https://github.com/Folksdev-camp/folksdev-ugurcandede/commit/d862b9106133b364bf86ba610215381b7dbac322)
 
 Blog projesi oluşturma ve GitHub'a yükleme.
-
-## Lisans
-
-Bu repo [Ugurcan Dede](https://github.com/ugurcandede) tarafından bootcamp sürecinde oluşturulmuştur. [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) lisansına
-sahiptir.
