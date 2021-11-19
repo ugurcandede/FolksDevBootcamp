@@ -6,6 +6,53 @@ Blog projesine `Hateoas` desteği eklendi.
 
 `GET` istekleri sonucunda, `_links` alanına `self` linki eklenerek, kullanıcıya `self` linki ile erişim sağlanır.
 
+|   Controller   | Metot |                            Adres                            |
+| :------------: | :---: | :---------------------------------------------------------: |
+| UserController |  GET  | localhost:8080/v1/user/df4fa731-e8e4-4167-9e3e-574f266030bb |
+
+```json
+{
+  "id": "df4fa731-e8e4-4167-9e3e-574f266030bb",
+  "username": "nemesisce",
+  "email": "cagridursun@folksdev",
+  "displayName": "Cagri Dursun",
+  "isActive": false,
+  "posts": [
+    {
+      "id": "9fab6e1a-f790-4ef8-9f1b-a1fb3cd7227e",
+      "title": "Lorem Ipsum",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a diam consectetur.",
+      "createdAt": "2021-11-19T01:24:11.745724",
+      "updatedAt": "2021-11-19T01:24:11.745724",
+      "status": "PUBLISHED",
+      "_links": {
+        "self": {
+          "href": "http://localhost:8080/v1/post/9fab6e1a-f790-4ef8-9f1b-a1fb3cd7227e"
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "id": "d4a93866-0c93-4a6b-8e26-c24feb25e0bd",
+      "body": "Hi Kod Gemisi",
+      "createdAt": "2021-11-19T01:24:11.745724",
+      "updatedAt": "2021-11-19T01:24:11.745724",
+      "_links": {
+        "self": {
+          "href": "http://localhost:8080/v1/comment/d4a93866-0c93-4a6b-8e26-c24feb25e0bd"
+        }
+      }
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "http://localhost:8080/v1/user/df4fa731-e8e4-4167-9e3e-574f266030bb"
+    }
+  }
+}
+```
+
 ## [Docker](https://github.com/ugurcandede/FolksDevBootcamp/commit/2aed7bbbe8c6ac78383427ce0d83120a7008d816)
 
 Blog projesine `Docker` desteği eklendi.
