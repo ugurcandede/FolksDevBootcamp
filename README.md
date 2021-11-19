@@ -74,7 +74,7 @@ Projeyi çalıştırmanın 2 yolu vardır.
 
 ## Commit Geçmişi
 
-Ödevler ve commit geçmişi [COMMITS](https://github.com/ugurcandede/FolksDevBootcamp/COMMITS.md) dosyası içindedir.
+Ödevler ve commit geçmişi [COMMITS](https://github.com/ugurcandede/FolksDevBootcamp/blob/master/COMMITS.md) dosyası içindedir.
 
 ## Lisans
 
