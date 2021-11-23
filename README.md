@@ -9,6 +9,7 @@ Bootcamp süresince geliştirilen spring boot projesine ait repodur.
 - Maven
 - Docker
 - Java 11
+- PostgreSQL
 
 ## Kullanılan Teknolojiler
 

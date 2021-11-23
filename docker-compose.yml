@@ -1,8 +1,10 @@
-version: '2.4'
+version: '3'
 
 services:
   blog:
     container_name: blog-container
+    build:
+      context: .
     image: bootcamp-blog
     ports:
       - 9091:8080
@@ -13,7 +15,7 @@ services:
 
   db:
     container_name: postgres-container
-    image: postgres
+    image: postgres:14
     restart: always
     environment:
       POSTGRES_PASSWORD: pass
